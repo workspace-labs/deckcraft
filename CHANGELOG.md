@@ -2,6 +2,13 @@
 
 All notable changes to deckcraft. The version is `VERSION` in `skills/deckcraft/deckcraft/__init__.py`.
 
+## [0.1.1] - 2026-10-21
+
+### Added
+
+- The README picture (`media/deckcraft-hero.png`): the twelve designs as a hand of cards, the owner's
+  pick (option D of seven).
+
 ## [0.1.0] - 2026-10-21
 
 The first version. Not yet independently reviewed.
