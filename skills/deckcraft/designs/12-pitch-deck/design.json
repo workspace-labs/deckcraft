@@ -1,0 +1,75 @@
+{
+  "id": "12",
+  "slug": "pitch-deck",
+  "name": "Pitch Deck",
+  "good_for": "Investors, competitions",
+  "colors": {
+    "bg": "#111111",
+    "ink": "#FFFFFF",
+    "muted": "#9AA0AE",
+    "accent": "#3D5AFE",
+    "accent2": "#7B8CFF",
+    "surface": "#1C1C1C",
+    "line": "#333333"
+  },
+  "fonts": {
+    "display": {
+      "family": "Sora",
+      "weight": 800,
+      "width": 0.639,
+      "fallback": "Arial"
+    },
+    "body": {
+      "family": "Sora",
+      "weight": 400,
+      "width": 0.621,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Almarai",
+      "weight": 800,
+      "width": 0.517,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Almarai",
+      "weight": 400,
+      "width": 0.468,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "deco": [
+      {
+        "shape": "rect",
+        "x": 98.4,
+        "y": 0,
+        "w": 1.6,
+        "h": 56.25,
+        "fill": "accent"
+      }
+    ],
+    "title": {
+      "size": 7.4,
+      "tracking": -0.035,
+      "leading": 0.98,
+      "w": 0.84
+    },
+    "eyebrow": {
+      "color": "accent2",
+      "weight": 700
+    },
+    "numbers": "row-auto",
+    "value": {
+      "size": 2.8,
+      "first": "accent2"
+    },
+    "marker": {
+      "style": "dot"
+    },
+    "bars": {
+      "fill": "line",
+      "last": "accent"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/* 08 Luxury: black, thin gold frame, elegant italic serif. */
+.hero::before,.closing::before{content:"";position:absolute;inset:clamp(12px,2.5vw,28px);
+  border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);pointer-events:none}
+header.nav{border-bottom-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+header.nav .org{color:var(--accent);letter-spacing:.3em;text-transform:uppercase;font-size:.85rem}
+.eyebrow{font-size:.75rem}
+.cards span{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem}
+.cards b{font-weight:500}
+.closing .contact{border:1px solid var(--accent);padding:.7em 1.6em;letter-spacing:.1em}
+footer{text-align:center;letter-spacing:.3em;text-transform:uppercase;border-top-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+[lang=ar] header.nav .org,[lang=ar] footer,[lang=ar] .cards span{letter-spacing:0}

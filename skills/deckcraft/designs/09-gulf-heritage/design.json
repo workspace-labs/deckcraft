@@ -1,0 +1,85 @@
+{
+  "id": "09",
+  "slug": "gulf-heritage",
+  "name": "Gulf Heritage",
+  "good_for": "UAE and Gulf audiences",
+  "colors": {
+    "bg": "#F1E4CC",
+    "ink": "#4A2A18",
+    "brown": "#6B3E26",
+    "muted": "#8A6A4E",
+    "accent": "#1C6E6A",
+    "sand": "#E8D5B5",
+    "line": "#C9AE85",
+    "surface": "#FFFFFF"
+  },
+  "fonts": {
+    "display": {
+      "family": "El Messiri",
+      "weight": 700,
+      "width": 0.548,
+      "fallback": "Georgia"
+    },
+    "body": {
+      "family": "El Messiri",
+      "weight": 400,
+      "width": 0.528,
+      "fallback": "Georgia"
+    },
+    "display_ar": {
+      "family": "El Messiri",
+      "weight": 700,
+      "width": 0.494,
+      "fallback": "Times New Roman"
+    },
+    "body_ar": {
+      "family": "El Messiri",
+      "weight": 400,
+      "width": 0.468,
+      "fallback": "Times New Roman"
+    }
+  },
+  "slide": {
+    "area": [
+      7,
+      6,
+      57,
+      44.25
+    ],
+    "deco": [
+      {
+        "shape": "pattern",
+        "x": 70,
+        "y": 0,
+        "w": 30,
+        "h": 56.25,
+        "fill": "accent",
+        "line": "sand",
+        "line_alpha": 0.55,
+        "tile": 6
+      }
+    ],
+    "title": {
+      "size": 5,
+      "color": "brown"
+    },
+    "eyebrow": {
+      "weight": 700
+    },
+    "cards": {
+      "style": "rule-top",
+      "line": "line",
+      "line_w": 0.1
+    },
+    "value": {
+      "size": 3
+    },
+    "marker": {
+      "style": "diamond"
+    },
+    "bars": {
+      "fill": "line",
+      "last": "accent"
+    }
+  }
+}

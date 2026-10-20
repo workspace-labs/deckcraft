@@ -1,0 +1,8 @@
+/* 12 Pitch Deck: near-black, one huge idea per screen, an electric blue edge. */
+body::after{content:"";position:fixed;top:0;bottom:0;inset-inline-end:0;width:10px;background:var(--accent);z-index:2}
+header.nav{border-bottom-color:var(--line)}
+h1{font-size:clamp(3rem,8.6vw,7.6rem);max-width:13ch}
+.hero{min-height:80vh;display:flex;align-items:center}
+.hero .wrap{width:100%}
+.cards li:first-child b{color:var(--c-accent2)}
+.closing .contact{background:var(--accent);color:#fff;border:0;padding:.7em 1.6em;border-radius:8px}

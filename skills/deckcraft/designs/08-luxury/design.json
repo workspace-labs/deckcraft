@@ -1,0 +1,104 @@
+{
+  "id": "08",
+  "slug": "luxury",
+  "name": "Luxury",
+  "good_for": "Premium brands, events, galas",
+  "colors": {
+    "bg": "#0E0E0E",
+    "ink": "#F3EBDD",
+    "muted": "#A89F8F",
+    "accent": "#C9A45C",
+    "surface": "#0E0E0E",
+    "line": "#C9A45C",
+    "bar": "#3A342A"
+  },
+  "fonts": {
+    "display": {
+      "family": "Cormorant Garamond",
+      "weight": 500,
+      "width": 0.443,
+      "fallback": "Garamond"
+    },
+    "body": {
+      "family": "Cormorant Garamond",
+      "weight": 500,
+      "width": 0.487,
+      "fallback": "Garamond"
+    },
+    "display_ar": {
+      "family": "Reem Kufi",
+      "weight": 400,
+      "width": 0.437,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Reem Kufi",
+      "weight": 400,
+      "width": 0.437,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "area": [
+      9,
+      7,
+      82,
+      42.25
+    ],
+    "align": "center",
+    "deco": [
+      {
+        "shape": "rect",
+        "x": 2.5,
+        "y": 2.5,
+        "w": 95,
+        "h": 51.25,
+        "fill": null,
+        "line": "accent",
+        "line_alpha": 0.55,
+        "line_w": 0.1
+      }
+    ],
+    "title": {
+      "size": 6,
+      "italic": true,
+      "w": 0.8
+    },
+    "eyebrow": {
+      "tracking": 0.42,
+      "size": 1.2,
+      "weight": 600
+    },
+    "cards": {
+      "style": "divider",
+      "line": "accent",
+      "line_alpha": 0.4
+    },
+    "value": {
+      "color": "accent",
+      "size": 3.4
+    },
+    "label": {
+      "case": "upper",
+      "tracking": 0.16,
+      "size": 1.0
+    },
+    "org": {
+      "case": "upper",
+      "tracking": 0.42,
+      "size": 1.0,
+      "color": "accent"
+    },
+    "body": {
+      "size": 2.3
+    },
+    "marker": {
+      "style": "diamond"
+    },
+    "bars": {
+      "fill": "bar",
+      "last": "accent",
+      "radius": 0
+    }
+  }
+}

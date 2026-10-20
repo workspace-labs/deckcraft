@@ -1,0 +1,8 @@
+/* 05 Government Formal: deep green bar, gold rule, calm serif, centred. */
+header.nav{background:var(--accent);border-bottom:4px solid var(--c-gold);padding:18px 0}
+header.nav .org,header.nav a{color:#fff}
+.eyebrow::before{content:"\25C6";display:block;color:var(--c-gold);font-size:1.3em;margin-bottom:.4em;letter-spacing:0}
+.block+.block{border-top:1px solid color-mix(in srgb,var(--c-gold) 45%,transparent)}
+h1,h2{max-width:24ch}
+.closing .contact{border:1px solid var(--c-gold);padding:.6em 1.4em;color:var(--accent)}
+footer{background:var(--accent);color:#DCE6E0;border-top:4px solid var(--c-gold);text-align:center}

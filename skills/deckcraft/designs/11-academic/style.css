@@ -1,0 +1,9 @@
+/* 11 Academic: maroon edge, readable serif headings, a numbers table. */
+body::before{content:"";position:fixed;top:0;bottom:0;inset-inline-start:0;width:8px;background:var(--accent);z-index:2}
+header.nav{border-bottom:2px solid var(--ink)}
+header.nav .org{color:var(--accent)}
+.eyebrow{font-family:var(--display);font-style:italic;font-weight:400;font-size:1rem}
+[lang=ar] .eyebrow{font-style:normal}
+.block+.block{border-top:1px solid var(--line)}
+.closing .contact{color:var(--accent)}
+footer{font-style:italic}

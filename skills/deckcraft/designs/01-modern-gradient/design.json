@@ -1,0 +1,112 @@
+{
+  "id": "01",
+  "slug": "modern-gradient",
+  "name": "Modern Gradient",
+  "good_for": "Modern business, product launches, apps",
+  "colors": {
+    "bg": "#F7F5FF",
+    "ink": "#1A1530",
+    "muted": "#5C5670",
+    "accent": "#6B4DFF",
+    "lilac": "#D9CCFF",
+    "peach": "#FFD3BC",
+    "mint": "#B9F2DF",
+    "surface": "#FFFFFF",
+    "line": "#1A1530"
+  },
+  "fonts": {
+    "display": {
+      "family": "Manrope",
+      "weight": 800,
+      "width": 0.603,
+      "fallback": "Arial"
+    },
+    "body": {
+      "family": "Manrope",
+      "weight": 500,
+      "width": 0.575,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Alexandria",
+      "weight": 700,
+      "width": 0.558,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Alexandria",
+      "weight": 400,
+      "width": 0.508,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "deco": [
+      {
+        "shape": "glow",
+        "x": -26,
+        "y": -21.4,
+        "w": 72,
+        "h": 54,
+        "fill": "lilac"
+      },
+      {
+        "shape": "glow",
+        "x": 62,
+        "y": -12.4,
+        "w": 66,
+        "h": 47.2,
+        "fill": "peach"
+      },
+      {
+        "shape": "glow",
+        "x": 34,
+        "y": 32.6,
+        "w": 72,
+        "h": 47.2,
+        "fill": "mint"
+      }
+    ],
+    "title": {
+      "size": 6,
+      "tracking": -0.035,
+      "leading": 1.0,
+      "w": 0.8
+    },
+    "eyebrow": {
+      "style": "pill",
+      "fill": "surface",
+      "alpha": 0.55,
+      "line": "ink",
+      "line_alpha": 0.18,
+      "color": "accent",
+      "case": "none",
+      "tracking": 0,
+      "weight": 700
+    },
+    "cards": {
+      "style": "panel",
+      "fill": "surface",
+      "alpha": 0.55,
+      "line": "surface",
+      "radius": 2,
+      "shadow": true,
+      "pad": 2.4,
+      "divider": "ink",
+      "divider_alpha": 0.12
+    },
+    "value": {
+      "first": "accent"
+    },
+    "org": {
+      "weight": 700
+    },
+    "marker": {
+      "style": "dot"
+    },
+    "bars": {
+      "fill": "lilac",
+      "last": "accent"
+    }
+  }
+}

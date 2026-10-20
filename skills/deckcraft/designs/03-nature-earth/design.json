@@ -1,0 +1,95 @@
+{
+  "id": "03",
+  "slug": "nature-earth",
+  "name": "Nature & Earth",
+  "good_for": "Sustainability, health, food, real estate",
+  "colors": {
+    "bg": "#E7EDE2",
+    "ink": "#24452F",
+    "muted": "#4E6654",
+    "accent": "#C8663F",
+    "moss": "#8BA35A",
+    "surface": "#FFFFFF",
+    "line": "#8BA35A"
+  },
+  "fonts": {
+    "display": {
+      "family": "Young Serif",
+      "weight": 400,
+      "width": 0.616,
+      "fallback": "Georgia"
+    },
+    "body": {
+      "family": "Outfit",
+      "weight": 400,
+      "width": 0.547,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Rubik",
+      "weight": 700,
+      "width": 0.5,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Rubik",
+      "weight": 400,
+      "width": 0.484,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "area": [
+      7,
+      6,
+      57,
+      44.25
+    ],
+    "deco": [
+      {
+        "shape": "leaf",
+        "x": 66,
+        "y": 26.25,
+        "w": 40,
+        "h": 40,
+        "fill": "ink",
+        "rotate": -12,
+        "corners": "tr-bl"
+      },
+      {
+        "shape": "leaf",
+        "x": 60,
+        "y": -5,
+        "w": 16,
+        "h": 16,
+        "fill": "accent",
+        "alpha": 0.9,
+        "corners": "tl-br"
+      }
+    ],
+    "eyebrow": {
+      "color": "accent",
+      "weight": 600
+    },
+    "cards": {
+      "style": "rule-left",
+      "line": "moss",
+      "line_w": 0.5,
+      "pad": 1.4
+    },
+    "value": {
+      "size": 2.6
+    },
+    "org": {
+      "weight": 600
+    },
+    "marker": {
+      "style": "dot",
+      "color": "moss"
+    },
+    "bars": {
+      "fill": "moss",
+      "last": "accent"
+    }
+  }
+}

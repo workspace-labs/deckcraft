@@ -1,0 +1,6 @@
+/* 07 Data Focus: built around the numbers; a ruled chart with one blue bar. */
+.numbers{background:#F8FAFC}
+.chart{background:repeating-linear-gradient(to top,var(--line) 0 1px,transparent 1px 25%)}
+.chart em{color:var(--ink)}
+.cards li:first-child b{color:var(--c-good)}
+.closing .contact{background:var(--accent);color:#fff;border:0;padding:.65em 1.4em;border-radius:6px}

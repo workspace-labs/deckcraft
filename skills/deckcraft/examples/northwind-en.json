@@ -1,0 +1,18 @@
+{
+  "lang": "en",
+  "title": "Northwind Freight: Q3 2026 update",
+  "org": "Northwind Freight",
+  "slides": [
+    {"type": "title", "eyebrow": "Q3 2026 update", "title": "Three new hubs, one faster network", "subtitle": "How the network changed this quarter, and what comes next.", "note": "Board meeting, 12 October 2026"},
+    {"type": "numbers", "eyebrow": "Q3 2026 update", "title": "Three new hubs, one faster network",
+     "items": [{"value": "AED 48.2M", "label": "Revenue, up 18%"}, {"value": "96.4%", "label": "On-time delivery"}, {"value": "3", "label": "New hubs opened"}]},
+    {"type": "section", "eyebrow": "Part 2", "title": "What changed on the ground", "subtitle": "Dubai South, Sohar and Dammam"},
+    {"type": "points", "eyebrow": "The network", "title": "Why deliveries got faster",
+     "points": ["Three new hubs cut the average trip by 140 km.", "Night sorting now runs in all five hubs.", "Drivers see live traffic and change routes on the way.", "Customs papers are filed before the truck arrives."]},
+    {"type": "chart", "eyebrow": "Revenue", "title": "Revenue by quarter, 2026",
+     "bars": [{"label": "Q1", "value": 39.1, "show": "39.1M"}, {"label": "Q2", "value": 41.6, "show": "41.6M"}, {"label": "Q3", "value": 48.2, "show": "48.2M"}],
+     "note": "AED millions. Source: Northwind finance team, September 2026."},
+    {"type": "quote", "text": "The new hubs changed how we plan our week. Stock arrives a full day earlier.", "by": "Head of supply, a retail customer"},
+    {"type": "closing", "title": "Thank you", "subtitle": "Questions and next steps", "contact": "ops@northwind.example"}
+  ]
+}

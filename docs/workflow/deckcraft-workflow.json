@@ -1,0 +1,322 @@
+{
+  "project": {
+    "name": "deckcraft",
+    "accent": "deckcraft",
+    "client": "WorkSpace Labs",
+    "summary": "An agent skill for decks and web pages with real design. Someone brings a brief or a weak PowerPoint or HTML page, picks one of 12 approved designs, and gets a PowerPoint, a web page, HTML slides or any mix in the same look, in English or Arabic, checked page by page.",
+    "actors": [
+      {
+        "name": "Person",
+        "role": "Brings the brief or file, picks a design, asks for changes."
+      },
+      {
+        "name": "Agent",
+        "role": "Claude, Codex or Grok: asks, builds, checks and hands over."
+      },
+      {
+        "name": "deckcraft tools",
+        "role": "The 12-design library, the file makers and the page checker."
+      }
+    ],
+    "assumptions": [
+      "The 12 designs are locked; the agent never changes them.",
+      "A brand named in the brief adds its colors and logo on top of the chosen design.",
+      "When fixing a file, every word stays; text fixes are only suggested, never made without asking.",
+      "The agent never invents facts or numbers.",
+      "Each design lives in its own folder: colors and fonts, web style, PowerPoint layouts.",
+      "PowerPoint files carry the real fonts inside; plain fonts are the backup."
+    ],
+    "version": "1.2"
+  },
+  "parts": [
+    {
+      "title": "Understand the request",
+      "summary": "From the brief or file to a clear request: content, format and language.",
+      "lanes": [
+        "Person",
+        "Agent",
+        "deckcraft tools"
+      ],
+      "nodes": [
+        {
+          "id": "start",
+          "type": "start",
+          "lane": "Person",
+          "title": "Brings a brief or file"
+        },
+        {
+          "id": "read",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Reads the request",
+          "detail": "brief, deck or page",
+          "result": "What is being asked"
+        },
+        {
+          "id": "fix",
+          "type": "decision",
+          "lane": "Agent",
+          "title": "Fixing a file?",
+          "branches": [
+            {
+              "label": "No",
+              "to": "clear"
+            },
+            {
+              "label": "Yes",
+              "to": "extract"
+            }
+          ]
+        },
+        {
+          "id": "extract",
+          "type": "step",
+          "lane": "deckcraft tools",
+          "title": "Pulls out the content",
+          "detail": "every word, number, image",
+          "result": "The content, kept as it is",
+          "next": "format"
+        },
+        {
+          "id": "clear",
+          "type": "decision",
+          "lane": "Agent",
+          "title": "Brief clear?",
+          "branches": [
+            {
+              "label": "Yes",
+              "to": "format"
+            },
+            {
+              "label": "No",
+              "to": "ask"
+            }
+          ]
+        },
+        {
+          "id": "ask",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Asks a short round",
+          "detail": "topic, audience, points, length",
+          "result": "Questions for the person"
+        },
+        {
+          "id": "answer",
+          "type": "step",
+          "lane": "Person",
+          "title": "Answers",
+          "result": "A fuller brief",
+          "next": "clear"
+        },
+        {
+          "id": "format",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Confirms the format",
+          "detail": "PowerPoint, web page or HTML slides; English or Arabic",
+          "result": "A clear request"
+        },
+        {
+          "id": "done",
+          "type": "end",
+          "lane": "Agent",
+          "title": "Request understood",
+          "to_part": 2
+        }
+      ]
+    },
+    {
+      "title": "Pick a design",
+      "summary": "The person sees the 12 approved designs and chooses one look.",
+      "lanes": [
+        "Person",
+        "Agent",
+        "deckcraft tools"
+      ],
+      "nodes": [
+        {
+          "id": "start",
+          "type": "start",
+          "lane": "Agent",
+          "title": "Request understood"
+        },
+        {
+          "id": "show",
+          "type": "step",
+          "lane": "deckcraft tools",
+          "title": "Opens the preview",
+          "detail": "12 designs, English and Arabic",
+          "result": "The design library on screen"
+        },
+        {
+          "id": "pick",
+          "type": "step",
+          "lane": "Person",
+          "title": "Picks a design",
+          "detail": "by number",
+          "result": "One chosen look"
+        },
+        {
+          "id": "brand",
+          "type": "decision",
+          "lane": "Agent",
+          "title": "Brand named?",
+          "branches": [
+            {
+              "label": "No",
+              "to": "done"
+            },
+            {
+              "label": "Yes",
+              "to": "addbrand"
+            }
+          ]
+        },
+        {
+          "id": "addbrand",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Adds the brand on top",
+          "detail": "colors and logo",
+          "result": "The look in the brand's colors",
+          "next": "done"
+        },
+        {
+          "id": "done",
+          "type": "end",
+          "lane": "Agent",
+          "title": "Design chosen",
+          "to_part": 3
+        }
+      ]
+    },
+    {
+      "title": "Make and check",
+      "summary": "The files are built in the chosen look, then every slide and page is checked before hand-over.",
+      "lanes": [
+        "Person",
+        "Agent",
+        "deckcraft tools"
+      ],
+      "nodes": [
+        {
+          "id": "start",
+          "type": "start",
+          "lane": "Agent",
+          "title": "Design chosen"
+        },
+        {
+          "id": "build",
+          "type": "step",
+          "lane": "deckcraft tools",
+          "title": "Builds the files",
+          "detail": "PowerPoint, web page, HTML slides",
+          "result": "Draft files"
+        },
+        {
+          "id": "shots",
+          "type": "step",
+          "lane": "deckcraft tools",
+          "title": "Screenshots every page",
+          "result": "A picture of every slide and page"
+        },
+        {
+          "id": "clean",
+          "type": "decision",
+          "lane": "Agent",
+          "title": "All clean?",
+          "branches": [
+            {
+              "label": "Yes",
+              "to": "hand"
+            },
+            {
+              "label": "No",
+              "to": "repair"
+            }
+          ]
+        },
+        {
+          "id": "repair",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Fixes the problems",
+          "detail": "cut-off text, overlaps, Arabic",
+          "result": "Corrected files",
+          "next": "shots"
+        },
+        {
+          "id": "hand",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Hands over the files",
+          "detail": "with any suggested text fixes",
+          "result": "Checked files"
+        },
+        {
+          "id": "done",
+          "type": "end",
+          "lane": "Person",
+          "title": "Has the files",
+          "to_part": 4
+        }
+      ]
+    },
+    {
+      "title": "Change rounds",
+      "summary": "The person asks for changes or another design until they say done.",
+      "lanes": [
+        "Person",
+        "Agent",
+        "deckcraft tools"
+      ],
+      "nodes": [
+        {
+          "id": "start",
+          "type": "start",
+          "lane": "Person",
+          "title": "Sees the result"
+        },
+        {
+          "id": "happy",
+          "type": "decision",
+          "lane": "Person",
+          "title": "Happy?",
+          "branches": [
+            {
+              "label": "Yes",
+              "to": "done"
+            },
+            {
+              "label": "No",
+              "to": "change"
+            }
+          ]
+        },
+        {
+          "id": "change",
+          "type": "step",
+          "lane": "Agent",
+          "title": "Makes the changes",
+          "detail": "edits, or another design",
+          "result": "Updated files"
+        },
+        {
+          "id": "recheck",
+          "type": "step",
+          "lane": "deckcraft tools",
+          "title": "Checks every page again",
+          "result": "Checked files",
+          "next": "happy"
+        },
+        {
+          "id": "done",
+          "type": "end",
+          "lane": "Person",
+          "title": "Done"
+        }
+      ]
+    }
+  ]
+}

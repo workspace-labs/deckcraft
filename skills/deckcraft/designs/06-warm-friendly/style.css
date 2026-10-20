@@ -1,0 +1,8 @@
+/* 06 Warm Friendly: soft peach and teal circles, rounded everything. */
+.hero::before,.closing::before{content:"";position:absolute;width:min(40vw,440px);aspect-ratio:1;border-radius:50%;
+  background:var(--c-peach);opacity:.65;inset-inline-end:-8%;top:-30%}
+.hero::after,.closing::after{content:"";position:absolute;width:min(18vw,200px);aspect-ratio:1;border-radius:50%;
+  background:var(--accent);opacity:.22;inset-inline-end:22%;bottom:-18%}
+.eyebrow{color:#fff;font-weight:800}
+.numbers{background:#fff}
+.closing .contact{background:var(--accent);color:#fff;border:0;padding:.7em 1.7em;border-radius:99px}

@@ -1,0 +1,92 @@
+{
+  "id": "11",
+  "slug": "academic",
+  "name": "Academic",
+  "good_for": "University, research, theses",
+  "colors": {
+    "bg": "#FFFFFF",
+    "ink": "#222222",
+    "muted": "#777777",
+    "accent": "#7A1F2B",
+    "line": "#DDDDDD",
+    "surface": "#FFFFFF"
+  },
+  "fonts": {
+    "display": {
+      "family": "Crimson Pro",
+      "weight": 600,
+      "width": 0.514,
+      "fallback": "Georgia"
+    },
+    "body": {
+      "family": "Lato",
+      "weight": 400,
+      "width": 0.541,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Noto Naskh Arabic",
+      "weight": 700,
+      "width": 0.441,
+      "fallback": "Times New Roman"
+    },
+    "body_ar": {
+      "family": "Noto Naskh Arabic",
+      "weight": 400,
+      "width": 0.426,
+      "fallback": "Times New Roman"
+    }
+  },
+  "slide": {
+    "area": [
+      8,
+      5,
+      85,
+      44
+    ],
+    "deco": [
+      {
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 56.25,
+        "fill": "accent"
+      }
+    ],
+    "title": {
+      "size": 4.8,
+      "color": "accent",
+      "pos": "top"
+    },
+    "eyebrow": {
+      "font": "display",
+      "italic": true,
+      "weight": 400,
+      "size": 1.8,
+      "color": "muted",
+      "case": "none",
+      "tracking": 0
+    },
+    "numbers": "table",
+    "value": {
+      "size": 2.4
+    },
+    "label": {
+      "size": 1.5,
+      "color": "ink"
+    },
+    "org": {
+      "pos": "footnote",
+      "size": 1.15
+    },
+    "marker": {
+      "style": "num"
+    },
+    "bars": {
+      "fill": "line",
+      "last": "accent",
+      "radius": 0
+    }
+  }
+}

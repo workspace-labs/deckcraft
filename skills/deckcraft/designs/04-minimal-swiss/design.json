@@ -1,0 +1,83 @@
+{
+  "id": "04",
+  "slug": "minimal-swiss",
+  "name": "Minimal Swiss",
+  "good_for": "Portfolios, design talks",
+  "colors": {
+    "bg": "#FFFFFF",
+    "ink": "#0A0A0A",
+    "muted": "#6B6B6B",
+    "accent": "#FF4F1A",
+    "surface": "#FFFFFF",
+    "line": "#0A0A0A",
+    "bar": "#DADADA"
+  },
+  "fonts": {
+    "display": {
+      "family": "Inter Tight",
+      "weight": 600,
+      "width": 0.557,
+      "fallback": "Arial"
+    },
+    "body": {
+      "family": "Inter Tight",
+      "weight": 400,
+      "width": 0.535,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Noto Sans Arabic",
+      "weight": 700,
+      "width": 0.511,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Noto Sans Arabic",
+      "weight": 400,
+      "width": 0.468,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "deco": [
+      {
+        "shape": "rect",
+        "x": 7,
+        "y": 6,
+        "w": 2.6,
+        "h": 2.6,
+        "fill": "accent"
+      }
+    ],
+    "title": {
+      "size": 7,
+      "tracking": -0.045,
+      "leading": 0.95,
+      "w": 0.72,
+      "pos": "bottom"
+    },
+    "eyebrow": {
+      "indent": 4.4,
+      "case": "none",
+      "tracking": 0,
+      "weight": 600,
+      "size": 1.7,
+      "color": "ink"
+    },
+    "numbers": "column-right",
+    "value": {
+      "size": 2.4
+    },
+    "org": {
+      "pos": "bottom-right"
+    },
+    "marker": {
+      "style": "dash"
+    },
+    "bars": {
+      "fill": "bar",
+      "last": "accent",
+      "radius": 0
+    }
+  }
+}

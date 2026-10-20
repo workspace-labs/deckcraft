@@ -1,0 +1,578 @@
+[
+ {
+  "family": "Alexandria",
+  "weight": 400,
+  "italic": false,
+  "file": "Alexandria-400.ttf",
+  "typeface": "Alexandria",
+  "style": "Regular"
+ },
+ {
+  "family": "Alexandria",
+  "weight": 700,
+  "italic": false,
+  "file": "Alexandria-700.ttf",
+  "typeface": "Alexandria",
+  "style": "Bold"
+ },
+ {
+  "family": "Almarai",
+  "weight": 400,
+  "italic": false,
+  "file": "Almarai-400.ttf",
+  "typeface": "Almarai",
+  "style": "Regular"
+ },
+ {
+  "family": "Almarai",
+  "weight": 700,
+  "italic": false,
+  "file": "Almarai-700.ttf",
+  "typeface": "Almarai Bold",
+  "style": "Regular"
+ },
+ {
+  "family": "Almarai",
+  "weight": 800,
+  "italic": false,
+  "file": "Almarai-800.ttf",
+  "typeface": "Almarai ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Amiri",
+  "weight": 700,
+  "italic": false,
+  "file": "Amiri-700.ttf",
+  "typeface": "Amiri",
+  "style": "Bold"
+ },
+ {
+  "family": "Anton",
+  "weight": 400,
+  "italic": false,
+  "file": "Anton-400.ttf",
+  "typeface": "Anton",
+  "style": "Regular"
+ },
+ {
+  "family": "Baloo Bhaijaan 2",
+  "weight": 500,
+  "italic": false,
+  "file": "BalooBhaijaan2-500.ttf",
+  "typeface": "Baloo Bhaijaan 2 Medium",
+  "style": "Regular"
+ },
+ {
+  "family": "Baloo Bhaijaan 2",
+  "weight": 700,
+  "italic": false,
+  "file": "BalooBhaijaan2-700.ttf",
+  "typeface": "Baloo Bhaijaan 2",
+  "style": "Bold"
+ },
+ {
+  "family": "Baloo Bhaijaan 2",
+  "weight": 800,
+  "italic": false,
+  "file": "BalooBhaijaan2-800.ttf",
+  "typeface": "Baloo Bhaijaan 2 ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Barlow",
+  "weight": 400,
+  "italic": false,
+  "file": "Barlow-400.ttf",
+  "typeface": "Barlow",
+  "style": "Regular"
+ },
+ {
+  "family": "Barlow",
+  "weight": 600,
+  "italic": false,
+  "file": "Barlow-600.ttf",
+  "typeface": "Barlow SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Barlow",
+  "weight": 700,
+  "italic": false,
+  "file": "Barlow-700.ttf",
+  "typeface": "Barlow",
+  "style": "Bold"
+ },
+ {
+  "family": "Barlow Condensed",
+  "weight": 700,
+  "italic": false,
+  "file": "BarlowCondensed-700.ttf",
+  "typeface": "Barlow Condensed",
+  "style": "Bold"
+ },
+ {
+  "family": "Bricolage Grotesque",
+  "weight": 600,
+  "italic": false,
+  "file": "BricolageGrotesque-600.ttf",
+  "typeface": "Bricolage Grotesque SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Bricolage Grotesque",
+  "weight": 700,
+  "italic": false,
+  "file": "BricolageGrotesque-700.ttf",
+  "typeface": "Bricolage Grotesque",
+  "style": "Bold"
+ },
+ {
+  "family": "Bricolage Grotesque",
+  "weight": 800,
+  "italic": false,
+  "file": "BricolageGrotesque-800.ttf",
+  "typeface": "Bricolage Grotesque ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Cairo",
+  "weight": 400,
+  "italic": false,
+  "file": "Cairo-400.ttf",
+  "typeface": "Cairo",
+  "style": "Regular"
+ },
+ {
+  "family": "Cairo",
+  "weight": 600,
+  "italic": false,
+  "file": "Cairo-600.ttf",
+  "typeface": "Cairo SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Cairo",
+  "weight": 700,
+  "italic": false,
+  "file": "Cairo-700.ttf",
+  "typeface": "Cairo",
+  "style": "Bold"
+ },
+ {
+  "family": "Cormorant Garamond",
+  "weight": 400,
+  "italic": false,
+  "file": "CormorantGaramond-400.ttf",
+  "typeface": "Cormorant Garamond",
+  "style": "Regular"
+ },
+ {
+  "family": "Cormorant Garamond",
+  "weight": 500,
+  "italic": false,
+  "file": "CormorantGaramond-500.ttf",
+  "typeface": "Cormorant Garamond Medium",
+  "style": "Regular"
+ },
+ {
+  "family": "Cormorant Garamond",
+  "weight": 500,
+  "italic": true,
+  "file": "CormorantGaramond-500i.ttf",
+  "typeface": "Cormorant Garamond Medium",
+  "style": "Italic"
+ },
+ {
+  "family": "Cormorant Garamond",
+  "weight": 600,
+  "italic": false,
+  "file": "CormorantGaramond-600.ttf",
+  "typeface": "Cormorant Garamond SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Cormorant Garamond",
+  "weight": 700,
+  "italic": false,
+  "file": "CormorantGaramond-700.ttf",
+  "typeface": "Cormorant Garamond",
+  "style": "Bold"
+ },
+ {
+  "family": "Crimson Pro",
+  "weight": 400,
+  "italic": true,
+  "file": "CrimsonPro-400i.ttf",
+  "typeface": "Crimson Pro",
+  "style": "Italic"
+ },
+ {
+  "family": "Crimson Pro",
+  "weight": 600,
+  "italic": false,
+  "file": "CrimsonPro-600.ttf",
+  "typeface": "Crimson Pro SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Crimson Pro",
+  "weight": 700,
+  "italic": false,
+  "file": "CrimsonPro-700.ttf",
+  "typeface": "Crimson Pro",
+  "style": "Bold"
+ },
+ {
+  "family": "El Messiri",
+  "weight": 400,
+  "italic": false,
+  "file": "ElMessiri-400.ttf",
+  "typeface": "El Messiri",
+  "style": "Regular"
+ },
+ {
+  "family": "El Messiri",
+  "weight": 700,
+  "italic": false,
+  "file": "ElMessiri-700.ttf",
+  "typeface": "El Messiri",
+  "style": "Bold"
+ },
+ {
+  "family": "Inter Tight",
+  "weight": 400,
+  "italic": false,
+  "file": "InterTight-400.ttf",
+  "typeface": "Inter Tight",
+  "style": "Regular"
+ },
+ {
+  "family": "Inter Tight",
+  "weight": 600,
+  "italic": false,
+  "file": "InterTight-600.ttf",
+  "typeface": "Inter Tight SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Inter Tight",
+  "weight": 700,
+  "italic": false,
+  "file": "InterTight-700.ttf",
+  "typeface": "Inter Tight",
+  "style": "Bold"
+ },
+ {
+  "family": "Lalezar",
+  "weight": 400,
+  "italic": false,
+  "file": "Lalezar-400.ttf",
+  "typeface": "Lalezar",
+  "style": "Regular"
+ },
+ {
+  "family": "Lato",
+  "weight": 400,
+  "italic": false,
+  "file": "Lato-400.ttf",
+  "typeface": "Lato",
+  "style": "Regular"
+ },
+ {
+  "family": "Lato",
+  "weight": 700,
+  "italic": false,
+  "file": "Lato-700.ttf",
+  "typeface": "Lato",
+  "style": "Bold"
+ },
+ {
+  "family": "Manrope",
+  "weight": 500,
+  "italic": false,
+  "file": "Manrope-500.ttf",
+  "typeface": "Manrope Medium",
+  "style": "Regular"
+ },
+ {
+  "family": "Manrope",
+  "weight": 700,
+  "italic": false,
+  "file": "Manrope-700.ttf",
+  "typeface": "Manrope",
+  "style": "Bold"
+ },
+ {
+  "family": "Manrope",
+  "weight": 800,
+  "italic": false,
+  "file": "Manrope-800.ttf",
+  "typeface": "Manrope ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Kufi Arabic",
+  "weight": 400,
+  "italic": false,
+  "file": "NotoKufiArabic-400.ttf",
+  "typeface": "Noto Kufi Arabic",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Kufi Arabic",
+  "weight": 600,
+  "italic": false,
+  "file": "NotoKufiArabic-600.ttf",
+  "typeface": "Noto Kufi Arabic SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Kufi Arabic",
+  "weight": 700,
+  "italic": false,
+  "file": "NotoKufiArabic-700.ttf",
+  "typeface": "Noto Kufi Arabic",
+  "style": "Bold"
+ },
+ {
+  "family": "Noto Kufi Arabic",
+  "weight": 800,
+  "italic": false,
+  "file": "NotoKufiArabic-800.ttf",
+  "typeface": "Noto Kufi Arabic ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Naskh Arabic",
+  "weight": 400,
+  "italic": false,
+  "file": "NotoNaskhArabic-400.ttf",
+  "typeface": "Noto Naskh Arabic",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Naskh Arabic",
+  "weight": 600,
+  "italic": false,
+  "file": "NotoNaskhArabic-600.ttf",
+  "typeface": "Noto Naskh Arabic SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Naskh Arabic",
+  "weight": 700,
+  "italic": false,
+  "file": "NotoNaskhArabic-700.ttf",
+  "typeface": "Noto Naskh Arabic",
+  "style": "Bold"
+ },
+ {
+  "family": "Noto Sans Arabic",
+  "weight": 400,
+  "italic": false,
+  "file": "NotoSansArabic-400.ttf",
+  "typeface": "Noto Sans Arabic",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Sans Arabic",
+  "weight": 600,
+  "italic": false,
+  "file": "NotoSansArabic-600.ttf",
+  "typeface": "Noto Sans Arabic SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Noto Sans Arabic",
+  "weight": 700,
+  "italic": false,
+  "file": "NotoSansArabic-700.ttf",
+  "typeface": "Noto Sans Arabic",
+  "style": "Bold"
+ },
+ {
+  "family": "Nunito",
+  "weight": 600,
+  "italic": false,
+  "file": "Nunito-600.ttf",
+  "typeface": "Nunito SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Nunito",
+  "weight": 700,
+  "italic": false,
+  "file": "Nunito-700.ttf",
+  "typeface": "Nunito",
+  "style": "Bold"
+ },
+ {
+  "family": "Nunito",
+  "weight": 800,
+  "italic": false,
+  "file": "Nunito-800.ttf",
+  "typeface": "Nunito ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Outfit",
+  "weight": 400,
+  "italic": false,
+  "file": "Outfit-400.ttf",
+  "typeface": "Outfit",
+  "style": "Regular"
+ },
+ {
+  "family": "Outfit",
+  "weight": 600,
+  "italic": false,
+  "file": "Outfit-600.ttf",
+  "typeface": "Outfit SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Outfit",
+  "weight": 700,
+  "italic": false,
+  "file": "Outfit-700.ttf",
+  "typeface": "Outfit",
+  "style": "Bold"
+ },
+ {
+  "family": "Reem Kufi",
+  "weight": 400,
+  "italic": false,
+  "file": "ReemKufi-400.ttf",
+  "typeface": "Reem Kufi",
+  "style": "Regular"
+ },
+ {
+  "family": "Reem Kufi",
+  "weight": 600,
+  "italic": false,
+  "file": "ReemKufi-600.ttf",
+  "typeface": "Reem Kufi SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Reem Kufi",
+  "weight": 700,
+  "italic": false,
+  "file": "ReemKufi-700.ttf",
+  "typeface": "Reem Kufi",
+  "style": "Bold"
+ },
+ {
+  "family": "Rubik",
+  "weight": 400,
+  "italic": false,
+  "file": "Rubik-400.ttf",
+  "typeface": "Rubik",
+  "style": "Regular"
+ },
+ {
+  "family": "Rubik",
+  "weight": 600,
+  "italic": false,
+  "file": "Rubik-600.ttf",
+  "typeface": "Rubik SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Rubik",
+  "weight": 700,
+  "italic": false,
+  "file": "Rubik-700.ttf",
+  "typeface": "Rubik",
+  "style": "Bold"
+ },
+ {
+  "family": "Sora",
+  "weight": 400,
+  "italic": false,
+  "file": "Sora-400.ttf",
+  "typeface": "Sora",
+  "style": "Regular"
+ },
+ {
+  "family": "Sora",
+  "weight": 700,
+  "italic": false,
+  "file": "Sora-700.ttf",
+  "typeface": "Sora",
+  "style": "Bold"
+ },
+ {
+  "family": "Sora",
+  "weight": 800,
+  "italic": false,
+  "file": "Sora-800.ttf",
+  "typeface": "Sora ExtraBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Source Sans 3",
+  "weight": 400,
+  "italic": false,
+  "file": "SourceSans3-400.ttf",
+  "typeface": "Source Sans 3",
+  "style": "Regular"
+ },
+ {
+  "family": "Source Sans 3",
+  "weight": 600,
+  "italic": false,
+  "file": "SourceSans3-600.ttf",
+  "typeface": "Source Sans 3 SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Source Sans 3",
+  "weight": 700,
+  "italic": false,
+  "file": "SourceSans3-700.ttf",
+  "typeface": "Source Sans 3",
+  "style": "Bold"
+ },
+ {
+  "family": "Source Serif 4",
+  "weight": 400,
+  "italic": false,
+  "file": "SourceSerif4-400.ttf",
+  "typeface": "Source Serif 4",
+  "style": "Regular"
+ },
+ {
+  "family": "Source Serif 4",
+  "weight": 400,
+  "italic": true,
+  "file": "SourceSerif4-400i.ttf",
+  "typeface": "Source Serif 4",
+  "style": "Italic"
+ },
+ {
+  "family": "Source Serif 4",
+  "weight": 600,
+  "italic": false,
+  "file": "SourceSerif4-600.ttf",
+  "typeface": "Source Serif 4 SemiBold",
+  "style": "Regular"
+ },
+ {
+  "family": "Source Serif 4",
+  "weight": 700,
+  "italic": false,
+  "file": "SourceSerif4-700.ttf",
+  "typeface": "Source Serif 4",
+  "style": "Bold"
+ },
+ {
+  "family": "Young Serif",
+  "weight": 400,
+  "italic": false,
+  "file": "YoungSerif-400.ttf",
+  "typeface": "Young Serif",
+  "style": "Regular"
+ }
+]

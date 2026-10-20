@@ -1,0 +1,12 @@
+/* 03 Nature & Earth: a big forest leaf and a small clay leaf. */
+.hero::after,.closing::after{content:"";position:absolute;width:min(46vw,520px);aspect-ratio:1;inset-inline-end:-6%;bottom:-38%;
+  background:var(--ink);border-radius:0 100% 0 100%;transform:rotate(-12deg)}
+.hero::before{content:"";position:absolute;width:min(16vw,180px);aspect-ratio:1;inset-inline-end:24%;top:-60px;
+  background:var(--accent);opacity:.9;border-radius:100% 0 100% 0}
+[dir=rtl] .hero::after,[dir=rtl] .closing::after{border-radius:100% 0 100% 0;transform:rotate(12deg)}
+[dir=rtl] .hero::before{border-radius:0 100% 0 100%}
+.hero .wrap>*,.closing .wrap>*{max-width:min(60%,40ch)}
+@media (max-width:700px){.hero .wrap>*,.closing .wrap>*{max-width:100%}.hero::after,.closing::after{opacity:.18}}
+.eyebrow{color:var(--accent)}
+.numbers{background:color-mix(in srgb,var(--c-moss) 14%,var(--bg))}
+.closing .contact{background:var(--accent);color:#fff;border:0;padding:.7em 1.6em;border-radius:99px}

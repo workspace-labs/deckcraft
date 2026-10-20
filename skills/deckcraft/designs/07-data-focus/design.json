@@ -1,0 +1,68 @@
+{
+  "id": "07",
+  "slug": "data-focus",
+  "name": "Data Focus",
+  "good_for": "Results, KPIs, finance",
+  "colors": {
+    "bg": "#FFFFFF",
+    "ink": "#1E293B",
+    "muted": "#64748B",
+    "accent": "#2563EB",
+    "good": "#16A34A",
+    "bar": "#CBD5E1",
+    "surface": "#FFFFFF",
+    "line": "#CBD5E1"
+  },
+  "fonts": {
+    "display": {
+      "family": "Barlow Condensed",
+      "weight": 700,
+      "width": 0.449,
+      "fallback": "Arial Narrow"
+    },
+    "body": {
+      "family": "Barlow",
+      "weight": 400,
+      "width": 0.529,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Cairo",
+      "weight": 700,
+      "width": 0.509,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Cairo",
+      "weight": 400,
+      "width": 0.465,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "title": {
+      "size": 4.8
+    },
+    "eyebrow": {
+      "weight": 600
+    },
+    "cards": {
+      "style": "rule-left",
+      "line": "accent",
+      "line_w": 0.4,
+      "pad": 1.4
+    },
+    "value": {
+      "size": 3.4,
+      "first": "good"
+    },
+    "marker": {
+      "style": "square"
+    },
+    "bars": {
+      "fill": "bar",
+      "last": "accent",
+      "base": "ink"
+    }
+  }
+}

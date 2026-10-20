@@ -1,0 +1,8 @@
+/* 04 Minimal Swiss: tight grotesk, lots of white, one orange square. */
+header.nav{border-bottom:0}
+h1{font-size:clamp(3rem,8vw,7.4rem);max-width:12ch}
+.eyebrow{display:flex;align-items:center;gap:.8em}
+.eyebrow::before{content:"";width:1.1em;height:1.1em;background:var(--accent);flex:none}
+.cards li{border-top:1px solid var(--ink);padding-top:14px}
+.cards b{font-size:clamp(1.8rem,3vw,2.5rem)}
+.closing .contact{border-bottom:4px solid var(--accent);color:var(--ink)}

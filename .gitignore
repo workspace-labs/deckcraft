@@ -1,0 +1,18 @@
+# Made files: decks, pages and check pictures are rebuilt from the source here
+dist/
+out/
+*.pptx
+!tests/fixtures/*.pptx
+*.pdf
+!skills/deckcraft/examples/*.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Environment files and secrets never enter the repository
+.env
+.env.*

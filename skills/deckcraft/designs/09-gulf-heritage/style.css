@@ -1,0 +1,8 @@
+/* 09 Gulf Heritage: sand ground and a teal panel of eight-point stars. */
+.hero::after,.closing::after{content:"";position:absolute;top:0;bottom:0;inset-inline-end:0;width:26%;
+  background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2740%27 height=%2740%27 viewBox=%270 0 40 40%27%3E%3Cg fill=%27none%27 stroke=%27%23E8D5B5%27 stroke-opacity=%27.55%27%3E%3Crect x=%2710%27 y=%2710%27 width=%2720%27 height=%2720%27/%3E%3Crect x=%2710%27 y=%2710%27 width=%2720%27 height=%2720%27 transform=%27rotate(45 20 20)%27/%3E%3Ccircle cx=%2720%27 cy=%2720%27 r=%274%27/%3E%3C/g%3E%3C/svg%3E") 0 0/64px 64px}
+.hero .wrap>*,.closing .wrap>*{max-width:min(66%,40ch)}
+@media (max-width:700px){.hero::after,.closing::after{width:14%}.hero .wrap>*,.closing .wrap>*{max-width:80%}}
+h1,h2{color:var(--c-brown)}
+.block+.block{border-top:1px solid var(--line)}
+.closing .contact{background:var(--c-brown);color:var(--bg);border:0;padding:.65em 1.5em;border-radius:4px}

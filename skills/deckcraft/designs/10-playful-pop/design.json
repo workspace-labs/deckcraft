@@ -1,0 +1,102 @@
+{
+  "id": "10",
+  "slug": "playful-pop",
+  "name": "Playful Pop",
+  "good_for": "Youth, marketing, social",
+  "colors": {
+    "bg": "#FFD23F",
+    "ink": "#111111",
+    "muted": "#111111",
+    "accent": "#FF5D8F",
+    "blue": "#3A86FF",
+    "surface": "#FFFFFF",
+    "line": "#111111"
+  },
+  "fonts": {
+    "display": {
+      "family": "Bricolage Grotesque",
+      "weight": 800,
+      "width": 0.613,
+      "fallback": "Arial Black"
+    },
+    "body": {
+      "family": "Bricolage Grotesque",
+      "weight": 600,
+      "width": 0.597,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Lalezar",
+      "weight": 400,
+      "width": 0.402,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Baloo Bhaijaan 2",
+      "weight": 500,
+      "width": 0.445,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "deco": [
+      {
+        "shape": "star6",
+        "x": 79,
+        "y": 4,
+        "w": 15,
+        "h": 15,
+        "fill": "accent"
+      }
+    ],
+    "title": {
+      "size": 6,
+      "leading": 0.95,
+      "w": 0.76
+    },
+    "eyebrow": {
+      "style": "tag",
+      "fill": "ink",
+      "color": "bg",
+      "rotate": -2,
+      "weight": 800,
+      "case": "none",
+      "tracking": 0
+    },
+    "cards": {
+      "style": "sticker",
+      "line": "ink",
+      "line_w": 0.3,
+      "radius": 1.4,
+      "pad": 1.6,
+      "fills": [
+        "accent",
+        "surface",
+        "blue"
+      ],
+      "inks": [
+        "ink",
+        "ink",
+        "surface"
+      ],
+      "rotate": [
+        -2,
+        1.5,
+        -1
+      ]
+    },
+    "org": {
+      "weight": 800,
+      "color": "ink"
+    },
+    "marker": {
+      "style": "dot",
+      "color": "ink"
+    },
+    "bars": {
+      "fill": "blue",
+      "last": "accent",
+      "line": "ink"
+    }
+  }
+}

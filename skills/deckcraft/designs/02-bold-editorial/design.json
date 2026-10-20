@@ -1,0 +1,90 @@
+{
+  "id": "02",
+  "slug": "bold-editorial",
+  "name": "Bold Editorial",
+  "good_for": "Stories, launches, announcements",
+  "colors": {
+    "bg": "#FFFFFF",
+    "ink": "#111111",
+    "muted": "#444444",
+    "accent": "#E3262E",
+    "surface": "#FFFFFF",
+    "line": "#111111"
+  },
+  "fonts": {
+    "display": {
+      "family": "Anton",
+      "weight": 400,
+      "width": 0.5,
+      "fallback": "Impact"
+    },
+    "body": {
+      "family": "Source Serif 4",
+      "weight": 400,
+      "width": 0.591,
+      "fallback": "Georgia"
+    },
+    "display_ar": {
+      "family": "Noto Kufi Arabic",
+      "weight": 800,
+      "width": 0.589,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Noto Kufi Arabic",
+      "weight": 400,
+      "width": 0.512,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "area": [
+      6,
+      5,
+      88,
+      46.25
+    ],
+    "title": {
+      "size": 8.2,
+      "case": "upper",
+      "leading": 0.92,
+      "w": 0.88,
+      "pos": "bottom"
+    },
+    "eyebrow": {
+      "style": "tag",
+      "fill": "accent",
+      "color": "surface",
+      "weight": 600
+    },
+    "cards": {
+      "style": "rule",
+      "line": "ink",
+      "line_w": 0.6
+    },
+    "value": {
+      "size": 4.4,
+      "color": "accent"
+    },
+    "label": {
+      "italic": true,
+      "color": "ink"
+    },
+    "org": {
+      "pos": "top-right",
+      "font": "display",
+      "case": "upper",
+      "tracking": 0.06,
+      "size": 1.5,
+      "color": "ink"
+    },
+    "marker": {
+      "style": "square"
+    },
+    "bars": {
+      "fill": "ink",
+      "last": "accent",
+      "radius": 0
+    }
+  }
+}

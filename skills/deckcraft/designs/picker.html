@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>deckcraft designs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Manrope:wght@700;800&family=Alexandria:wght@400;600;700&family=Young+Serif&family=Outfit:wght@400;600&family=Rubik:wght@400;600;700&family=Anton&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Kufi+Arabic:wght@400;800&family=Inter+Tight:wght@400;600&family=Noto+Sans+Arabic:wght@400;700&family=Source+Sans+3:wght@400;600&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Nunito:wght@600;800&family=Baloo+Bhaijaan+2:wght@500;800&family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&family=Cairo:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Reem+Kufi:wght@400;600&family=El+Messiri:wght@400;700&family=Bricolage+Grotesque:wght@600;800&family=Lalezar&family=Crimson+Pro:ital,wght@0,600;1,400&family=Lato:wght@400;700&family=Sora:wght@400;700;800&family=Almarai:wght@400;800&display=swap">
+<style>
+:root{--bg:#EEF0F3;--card:#fff;--ink:#15171C;--muted:#5E6573;--line:#DADDE3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif}
+header.top{max-width:1240px;margin:0 auto;padding:48px 16px 24px}
+header.top h1{margin:0 0 8px;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em}
+header.top p{margin:0;color:var(--muted);max-width:760px;line-height:1.5}
+main{max-width:1240px;margin:0 auto;padding:0 16px 64px;display:grid;gap:28px}
+.card{background:var(--card);border-radius:14px;padding:22px;border:1px solid var(--line)}
+.card header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:16px}
+.num{font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.card h2{margin:0;font-size:22px}
+.good{color:var(--muted)}
+.pair{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start}
+.pair figure{margin:0}
+.pair figcaption{font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.04em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:16px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+.sw{display:inline-flex;gap:6px;vertical-align:middle}
+.sw span{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+@media (max-width:760px){.pair{grid-template-columns:1fr}}
+
+/* ---------- shared mockup frames ---------- */
+.box{position:relative;aspect-ratio:16/9;container-type:inline-size;border-radius:6px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.08),0 6px 18px rgba(0,0,0,.06)}
+.box.w{aspect-ratio:1/1}
+.slide,.web{position:absolute;inset:0;overflow:hidden}
+.slide i,.web i{position:absolute;display:block;pointer-events:none;font-style:normal}
+.slide>:not(i),.web>:not(i){position:relative;z-index:1}
+.slide{padding:6cqw 7cqw;display:grid;grid-template-rows:auto 1fr auto auto;gap:2cqw}
+.slide .eb{margin:0;font-size:1.5cqw;letter-spacing:.12em;text-transform:uppercase}
+.slide h2{margin:0;font-size:5.4cqw;line-height:1.05;align-self:center}
+.kp{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:3cqw}
+.kp b,.kp span{display:block}
+.slide .kp b{font-size:3.6cqw;line-height:1.1}
+.slide .kp span{font-size:1.4cqw;margin-top:.4cqw}
+.slide .br{margin:0;font-size:1.2cqw}
+.web{padding:4.5cqw 6cqw;display:flex;flex-direction:column;gap:3cqw}
+.web nav{display:flex;align-items:center;gap:4cqw;font-size:2.6cqw}
+.web nav b{margin-inline-end:auto}
+.web .hero{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.4cqw}
+.web .eb{margin:0;font-size:2.6cqw}
+.web h3{margin:0;font-size:7cqw;line-height:1.25}
+.web .lead{margin:0;font-size:3cqw;line-height:1.6;max-width:88%}
+.web .btn{align-self:flex-start;padding:1.8cqw 4cqw;font-size:2.8cqw;text-decoration:none}
+.web .kp{gap:3cqw}
+.web .kp b{font-size:4.6cqw;line-height:1.3}
+.web .kp span{font-size:2.3cqw}
+
+/* 1 Modern Gradient */
+.d1 .slide,.d1 .web{background:radial-gradient(60% 80% at 10% 10%,#D9CCFF 0,transparent 60%),radial-gradient(55% 70% at 95% 20%,#FFD3BC 0,transparent 60%),radial-gradient(60% 70% at 70% 100%,#B9F2DF 0,transparent 60%),#F7F5FF;color:#1A1530}
+.d1 .slide{font-family:Manrope}
+.d1 .slide .eb{justify-self:start;border:1px solid rgba(26,21,48,.18);background:rgba(255,255,255,.55);border-radius:99px;padding:.5cqw 1.6cqw;text-transform:none;letter-spacing:0;font-weight:700;color:#6B4DFF}
+.d1 .slide h2{font-weight:800;font-size:6cqw;letter-spacing:-.035em;line-height:1;max-width:80%}
+.d1 .kp{background:rgba(255,255,255,.55);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:2cqw;padding:2cqw 2.4cqw;gap:0;box-shadow:0 1.4cqw 3cqw rgba(80,60,160,.12)}
+.d1 .kp li+li{border-inline-start:1px solid rgba(26,21,48,.12);padding-inline-start:2.4cqw}
+.d1 .kp b{font-weight:800}.d1 .kp li:first-child b{color:#6B4DFF}
+.d1 .kp span{color:#5C5670}
+.d1 .slide .br{font-weight:700;color:#5C5670}
+.d1 .web{font-family:Alexandria}
+.d1 .web nav{color:#5C5670}.d1 .web nav b{font-weight:700;color:#1A1530}
+.d1 .web .eb{color:#6B4DFF;font-weight:600}.d1 .web h3{font-weight:700}
+.d1 .web .btn{background:#6B4DFF;color:#fff;border-radius:99px;font-weight:600}
+.d1 .web .kp{padding:2.4cqw}
+
+/* 2 Bold Editorial */
+.d2 .slide{background:#fff;color:#111;font-family:'Source Serif 4';padding:5cqw 6cqw}
+.d2 .slide .eb{justify-self:start;background:#E3262E;color:#fff;padding:.5cqw 1.2cqw;font-weight:600}
+.d2 .slide h2{font-family:Anton;text-transform:uppercase;font-weight:400;font-size:8.2cqw;line-height:.92;align-self:end;max-width:88%}
+.d2 .kp{border-top:.6cqw solid #111;padding-top:1.6cqw}
+.d2 .slide .kp b{font-family:Anton;font-weight:400;color:#E3262E;font-size:4.4cqw}
+.d2 .kp span{font-style:italic}
+.d2 .slide .br{position:absolute;top:5cqw;right:6cqw;font-family:Anton;text-transform:uppercase;letter-spacing:.06em;font-size:1.5cqw}
+.d2 .web{background:#fff;color:#111;font-family:'Noto Kufi Arabic'}
+.d2 .web nav{border-bottom:.8cqw solid #111;padding-bottom:2cqw}.d2 .web nav b{font-weight:800}
+.d2 .web .eb{color:#E3262E;font-weight:800}.d2 .web h3{font-weight:800;font-size:7.6cqw;line-height:1.3}
+.d2 .web .btn{background:#111;color:#fff}
+.d2 .web .kp{border-top:.6cqw solid #111;padding-top:2cqw}.d2 .web .kp b{color:#E3262E;font-weight:800}
+
+/* 3 Nature & Earth */
+.d3 .slide,.d3 .web{background:#E7EDE2;color:#24452F}
+.d3 .leaf{width:40cqw;height:40cqw;right:-6cqw;bottom:-10cqw;background:#24452F;border-radius:0 100% 0 100%;transform:rotate(-12deg)}
+.d3 .leaf2{width:16cqw;height:16cqw;right:24cqw;top:-5cqw;background:#C8663F;border-radius:100% 0 100% 0;opacity:.9}
+.d3 .slide{font-family:Outfit}
+.d3 .slide .eb{color:#C8663F;font-weight:600}
+.d3 .slide h2{font-family:'Young Serif';font-weight:400;font-size:5.4cqw;max-width:60%}
+.d3 .slide .kp{max-width:64%;gap:2cqw}
+.d3 .kp b{white-space:nowrap}
+.d3 .kp li{border-inline-start:.5cqw solid #8BA35A;padding-inline-start:1.4cqw}
+.d3 .slide .kp b{font-family:'Young Serif';font-weight:400;font-size:2.6cqw}
+.d3 .kp span{color:#4E6654}
+.d3 .slide .br{color:#4E6654;font-weight:600}
+.d3 .web{font-family:Rubik}
+.d3 .web .leaf{right:auto;left:-14cqw;bottom:auto;top:26cqw;width:30cqw;height:30cqw}
+.d3 .web .leaf2{display:none}
+.d3 .web nav b{font-weight:700}.d3 .web nav{color:#4E6654}
+.d3 .web .eb{color:#C8663F;font-weight:600}.d3 .web h3{font-weight:700}
+.d3 .web .btn{background:#C8663F;color:#fff;border-radius:99px;font-weight:600}
+
+/* 4 Minimal Swiss */
+.d4 .slide{background:#fff;color:#0A0A0A;font-family:'Inter Tight';grid-template-columns:1fr auto;grid-template-rows:auto 1fr;grid-template-areas:"eb kp" "h h"}
+.d4 .sq{width:2.6cqw;height:2.6cqw;background:#FF4F1A;left:7cqw;top:6cqw}
+.d4 .slide .eb{grid-area:eb;padding-left:4.4cqw;text-transform:none;letter-spacing:0;font-weight:600;font-size:1.7cqw;line-height:2.6cqw}
+.d4 .slide h2{grid-area:h;align-self:end;font-weight:600;font-size:7cqw;letter-spacing:-.045em;line-height:.95;max-width:72%}
+.d4 .slide .kp{grid-area:kp;grid-template-columns:1fr;gap:1.6cqw;text-align:right}
+.d4 .slide .kp b{font-size:2.4cqw;font-weight:600}
+.d4 .kp span{color:#6B6B6B}
+.d4 .slide .br{position:absolute;right:7cqw;bottom:6cqw;color:#6B6B6B}
+.d4 .web{background:#fff;color:#0A0A0A;font-family:'Noto Sans Arabic'}
+.d4 .web .eb{color:#FF4F1A;font-weight:700}.d4 .web h3{font-weight:700;font-size:7.6cqw;line-height:1.2}
+.d4 .web .btn{color:#0A0A0A;border-bottom:.6cqw solid #FF4F1A;padding:.6cqw 0;font-weight:700}
+.d4 .web .kp li{border-top:1px solid #0A0A0A;padding-top:1.6cqw}.d4 .web .kp span{color:#6B6B6B}
+
+/* 5 Government Formal */
+.d5 .slide{background:#F7F6F2;color:#1C2B24;font-family:'Source Sans 3';border-top:1.2cqw solid #1F4D3A;text-align:center;padding:5cqw 8cqw}
+.d5 .rule{top:0;left:0;right:0;height:.35cqw;background:#B08D4B}
+.d5 .slide .eb{color:#1F4D3A;letter-spacing:.22em;font-weight:600}
+.d5 .slide .eb::before{content:"\25C6";display:block;color:#B08D4B;font-size:2cqw;letter-spacing:0;margin-bottom:.8cqw}
+.d5 .slide h2{font-family:'Source Serif 4';font-weight:600;font-size:5cqw;color:#1F4D3A;max-width:80%;justify-self:center}
+.d5 .kp li+li{border-inline-start:1px solid #B08D4B}
+.d5 .kp b{font-family:'Source Serif 4';color:#1F4D3A;font-weight:600}.d5 .kp span{color:#5A6B62}
+.d5 .slide .br{color:#8A7A55;letter-spacing:.14em;text-transform:uppercase;font-size:1.1cqw}
+.d5 .web{background:#F7F6F2;color:#1C2B24;font-family:'Noto Naskh Arabic';padding-top:0}
+.d5 .web nav{background:#1F4D3A;color:#DCE6E0;margin:0 -6cqw;padding:2.4cqw 6cqw;border-bottom:.5cqw solid #B08D4B}
+.d5 .web nav b{color:#fff;font-family:Amiri}
+.d5 .web .eb{color:#8A6B30;font-weight:700}.d5 .web h3{font-family:Amiri;font-weight:700;color:#1F4D3A}
+.d5 .web .btn{border:1px solid #B08D4B;color:#1F4D3A;font-weight:700}
+.d5 .web .kp li{border-inline-start:1px solid #B08D4B;padding-inline-start:2cqw}.d5 .web .kp b{font-family:Amiri;color:#1F4D3A}
+
+/* 6 Warm Friendly */
+.d6 .slide,.d6 .web{background:#FFF4EC;color:#3B2F2F}
+.d6 .b1{width:34cqw;height:34cqw;border-radius:50%;background:#FFB38A;opacity:.65;right:-9cqw;top:-12cqw}
+.d6 .b2{width:16cqw;height:16cqw;border-radius:50%;background:#2A9D8F;opacity:.22;right:20cqw;bottom:-7cqw}
+.d6 .slide{font-family:Nunito}
+.d6 .slide .eb{justify-self:start;background:#2A9D8F;color:#fff;border-radius:99px;padding:.5cqw 1.6cqw;text-transform:none;letter-spacing:0;font-weight:800}
+.d6 .slide h2{font-weight:800;font-size:5.2cqw;max-width:70%}
+.d6 .kp li{background:#fff;border-radius:2.4cqw;padding:1.8cqw 2cqw;box-shadow:0 1cqw 2.5cqw rgba(160,90,50,.12)}
+.d6 .kp b{color:#2A9D8F;font-weight:800}
+.d6 .slide .br{font-weight:800;color:#C2703F}
+.d6 .web{font-family:'Baloo Bhaijaan 2'}
+.d6 .web nav b{color:#C2703F;font-weight:800}
+.d6 .web .eb{color:#C2703F;font-weight:800}.d6 .web h3{font-weight:800}
+.d6 .web .btn{background:#2A9D8F;color:#fff;border-radius:99px;font-weight:800}
+.d6 .web .kp li{border-radius:3cqw;padding:2cqw}
+
+/* 7 Data Focus */
+.d7 .slide{background:#fff;color:#1E293B;font-family:Barlow;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr auto auto;grid-template-areas:"eb ch" "h ch" "kp ch" "br ch";column-gap:5cqw}
+.d7 .slide .eb{grid-area:eb;color:#2563EB;font-weight:600}
+.d7 .slide h2{grid-area:h;font-family:'Barlow Condensed';font-weight:700;font-size:4.8cqw}
+.d7 .slide .kp{grid-area:kp;gap:2cqw}
+.d7 .slide .kp b{font-family:'Barlow Condensed';font-weight:700;font-size:3.2cqw}
+.d7 .kp span{color:#64748B}
+.d7 .kp li:first-child b{color:#16A34A}
+.d7 .slide .br{grid-area:br;color:#64748B}
+.d7 .ch{grid-area:ch;display:flex;align-items:flex-end;gap:2.4cqw;border-bottom:2px solid #1E293B;padding:0 1.6cqw;font-size:1.3cqw;color:#64748B}
+.d7 .ch div{flex:1;height:var(--h);background:#CBD5E1;position:relative;border-radius:.4cqw .4cqw 0 0}
+.d7 .ch div:last-child{background:#2563EB}
+.d7 .ch em{position:absolute;top:-2.2cqw;left:0;right:0;text-align:center;font-style:normal;font-weight:600;color:#1E293B}
+.d7 .ch span{position:absolute;bottom:-2.4cqw;left:0;right:0;text-align:center}
+.d7 .web{background:#fff;color:#1E293B;font-family:Cairo}
+.d7 .web nav b{font-weight:700}.d7 .web nav{color:#64748B}
+.d7 .web .eb{color:#2563EB;font-weight:700}.d7 .web h3{font-weight:700}
+.d7 .web .btn{background:#2563EB;color:#fff;border-radius:.8cqw;font-weight:700}
+.d7 .web .kp li{border-inline-start:.8cqw solid #2563EB;padding-inline-start:2cqw}
+
+/* 8 Luxury */
+.d8 .slide,.d8 .web{background:#0E0E0E;color:#F3EBDD}
+.d8 .fr{inset:2.5cqw;border:1px solid rgba(201,164,92,.55)}
+.d8 .slide{font-family:'Cormorant Garamond';text-align:center;padding:7cqw 9cqw}
+.d8 .slide .eb{color:#C9A45C;letter-spacing:.42em;font-size:1.2cqw;font-weight:600}
+.d8 .slide h2{font-style:italic;font-weight:500;font-size:6cqw;justify-self:center;max-width:80%}
+.d8 .kp li+li{border-inline-start:1px solid rgba(201,164,92,.4)}
+.d8 .kp b{color:#C9A45C;font-weight:500}
+.d8 .kp span{letter-spacing:.16em;text-transform:uppercase;color:#A89F8F}
+.d8 .slide .kp span{font-size:1cqw}
+.d8 .slide .br{letter-spacing:.42em;text-transform:uppercase;font-size:1cqw;color:#C9A45C}
+.d8 .web{font-family:'Reem Kufi';padding:7cqw 8cqw}
+.d8 .web .fr{inset:3cqw}
+.d8 .web nav{color:#A89F8F}.d8 .web nav b{color:#C9A45C;font-weight:600}
+.d8 .web .eb{color:#C9A45C}.d8 .web h3{font-weight:400}.d8 .web .lead{color:#C9C0B0}
+.d8 .web nav{font-size:3cqw}.d8 .web .eb{font-size:3cqw}.d8 .web .lead{font-size:3.4cqw}.d8 .web .kp span{font-size:2.6cqw;letter-spacing:0}
+.d8 .web .btn{border:1px solid #C9A45C;color:#C9A45C}
+
+/* 9 Gulf Heritage */
+.d9 .slide,.d9 .web{background:#F1E4CC;color:#4A2A18;font-family:'El Messiri'}
+.d9 .pat{top:0;bottom:0;right:0;width:30%;background:#1C6E6A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23E8D5B5' stroke-opacity='.55'%3E%3Crect x='10' y='10' width='20' height='20'/%3E%3Crect x='10' y='10' width='20' height='20' transform='rotate(45 20 20)'/%3E%3Ccircle cx='20' cy='20' r='4'/%3E%3C/g%3E%3C/svg%3E") 0 0/6cqw 6cqw}
+.d9 .slide{padding-right:36cqw}
+.d9 .slide .eb{color:#1C6E6A;font-weight:700}
+.d9 .slide h2{font-weight:700;font-size:5cqw;color:#6B3E26}
+.d9 .kp li{border-top:1px solid #C9AE85;padding-top:1.2cqw}
+.d9 .kp b{color:#1C6E6A;font-weight:700}
+.d9 .slide .kp b{font-size:3cqw}
+.d9 .slide .br{color:#8A6A4E}
+.d9 .web .pat{right:auto;left:0;width:20%}
+.d9 .web{padding-left:26cqw}
+.d9 .web nav b{color:#6B3E26;font-weight:700}
+.d9 .web .eb{color:#1C6E6A;font-weight:700}.d9 .web h3{font-weight:700;color:#6B3E26}
+.d9 .web .kp b{white-space:nowrap;font-size:4cqw}
+.d9 .web .btn{background:#6B3E26;color:#F1E4CC;border-radius:.6cqw}
+
+/* 10 Playful Pop */
+.d10 .slide,.d10 .web{background:#FFD23F;color:#111}
+.d10 .star{width:15cqw;height:15cqw;right:6cqw;top:4cqw;background:#FF5D8F;clip-path:polygon(50% 0,61% 32%,95% 25%,70% 50%,95% 75%,61% 68%,50% 100%,39% 68%,5% 75%,30% 50%,5% 25%,39% 32%)}
+.d10 .slide{font-family:'Bricolage Grotesque'}
+.d10 .slide .eb{justify-self:start;background:#111;color:#FFD23F;padding:.5cqw 1.4cqw;transform:rotate(-2deg);text-transform:none;letter-spacing:0;font-weight:800}
+.d10 .slide h2{font-weight:800;font-size:6cqw;line-height:.95;max-width:76%}
+.d10 .kp li{border:.3cqw solid #111;border-radius:1.4cqw;padding:1.6cqw;box-shadow:.6cqw .6cqw 0 #111;background:#fff}
+.d10 .kp li:nth-child(1){background:#FF5D8F;transform:rotate(-2deg)}
+.d10 .kp li:nth-child(2){transform:rotate(1.5deg)}
+.d10 .kp li:nth-child(3){background:#3A86FF;color:#fff;transform:rotate(-1deg)}
+.d10 .kp b{font-weight:800}
+.d10 .slide .br{font-weight:800}
+.d10 .web{font-family:Lalezar}
+.d10 .web .star{width:22cqw;height:22cqw;left:5cqw;right:auto;top:14cqw}
+.d10 .web .eb{color:#111}.d10 .web h3{font-weight:400;font-size:8cqw;line-height:1.2;max-width:70%}
+.d10 .web .lead{font-family:'Baloo Bhaijaan 2';font-weight:500}
+.d10 .web .btn{background:#FF5D8F;color:#111;border:.5cqw solid #111;border-radius:1.4cqw;box-shadow:.7cqw .7cqw 0 #111}
+.d10 .web .kp span{font-family:'Baloo Bhaijaan 2'}
+.d10 .web .kp b{font-weight:400}
+
+/* 11 Academic */
+.d11 .slide{background:#fff;color:#222;font-family:Lato;grid-template-rows:auto auto 1fr;padding:5cqw 7cqw 5cqw 8cqw}
+.d11 .bar{left:0;top:0;bottom:0;width:1cqw;background:#7A1F2B}
+.d11 .slide .eb{font-family:'Crimson Pro';font-style:italic;text-transform:none;letter-spacing:0;font-size:1.8cqw;color:#777}
+.d11 .slide h2{font-family:'Crimson Pro';font-weight:600;font-size:4.8cqw;color:#7A1F2B;align-self:start}
+.d11 .slide .kp{grid-template-columns:1fr;gap:0;max-width:62%;align-self:start}
+.d11 .slide .kp li{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:baseline;border-bottom:1px solid #ddd;padding:1cqw 0}
+.d11 .slide .kp li:first-child{border-top:2px solid #222}
+.d11 .slide .kp b{font-family:'Crimson Pro';font-weight:600;font-size:2.4cqw}
+.d11 .slide .kp span{font-size:1.5cqw;color:#444;margin:0}
+.d11 .slide .br{display:none}
+.d11 .fn{left:8cqw;right:7cqw;bottom:3.4cqw;font-size:1.15cqw;color:#777;font-family:'Crimson Pro';font-style:italic;display:flex;justify-content:space-between;border-top:1px solid #ddd;padding-top:1cqw}
+.d11 .web{background:#fff;color:#222;font-family:'Noto Naskh Arabic'}
+.d11 .web nav{border-bottom:2px solid #222;padding-bottom:2cqw}.d11 .web nav b{color:#7A1F2B}
+.d11 .web .eb{color:#777}.d11 .web h3{color:#7A1F2B;font-weight:700}
+.d11 .web .btn{color:#7A1F2B;text-decoration:underline;padding:0;font-weight:700}
+.d11 .web .kp li{border-top:2px solid #222;padding-top:1.4cqw}.d11 .web .kp span{color:#555}
+
+/* 12 Pitch Deck */
+.d12 .slide,.d12 .web{background:#111;color:#fff}
+.d12 .blk{right:0;top:0;bottom:0;width:1.6cqw;background:#3D5AFE}
+.d12 .slide{font-family:Sora}
+.d12 .slide .eb{color:#7B8CFF;font-weight:700}
+.d12 .slide h2{font-weight:800;font-size:7.4cqw;line-height:.98;letter-spacing:-.035em;max-width:84%}
+.d12 .slide .kp{grid-template-columns:repeat(3,auto);justify-content:start;gap:7cqw}
+.d12 .slide .kp b{font-size:2.8cqw}
+.d12 .kp li:first-child b{color:#7B8CFF}
+.d12 .kp span{color:#9AA0AE}
+.d12 .slide .br{color:#9AA0AE}
+.d12 .web{font-family:Almarai}
+.d12 .web .blk{right:auto;left:0;width:2cqw}
+.d12 .web nav{color:#9AA0AE}.d12 .web nav b{color:#fff;font-weight:800}
+.d12 .web .eb{color:#7B8CFF;font-weight:800}.d12 .web h3{font-weight:800;font-size:8cqw;line-height:1.2}
+.d12 .web .lead{color:#C4C8D2}
+.d12 .web .btn{background:#3D5AFE;color:#fff;border-radius:1cqw;font-weight:800}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Pick a design: 12 designs</h1>
+  <p>Every design shows the same sample brief (Northwind Freight, a made-up shipping company). On the left is a PowerPoint slide in English, and on the right is a web page in Arabic, right to left. Judge the look, not the words. Tell the agent the number of the design you want.</p>
+</header>
+<main id="list"></main>
+<script>
+const D=[
+ {n:'Modern Gradient',g:'Modern business, product launches, apps',c:['#F7F5FF','#D9CCFF','#FFD3BC','#B9F2DF','#6B4DFF','#1A1530'],f:'Manrope · Alexandria',p:'Arial'},
+ {n:'Bold Editorial',g:'Stories, launches, announcements',c:['#111111','#E3262E','#FFFFFF'],f:'Anton + Source Serif 4 · Noto Kufi Arabic',p:'Impact + Georgia / Arial'},
+ {n:'Nature & Earth',g:'Sustainability, health, food, real estate',c:['#E7EDE2','#24452F','#8BA35A','#C8663F'],f:'Young Serif + Outfit · Rubik',p:'Georgia + Arial / Arial',d:'<i class="leaf"></i><i class="leaf2"></i>'},
+ {n:'Minimal Swiss',g:'Portfolios, design talks',c:['#FFFFFF','#0A0A0A','#FF4F1A'],f:'Inter Tight · Noto Sans Arabic',p:'Arial',d:'<i class="sq"></i>',w:''},
+ {n:'Government Formal',g:'Ministries, official briefs',c:['#1F4D3A','#B08D4B','#F7F6F2','#1C2B24'],f:'Source Serif 4 + Source Sans 3 · Amiri + Noto Naskh Arabic',p:'Georgia + Arial / Times New Roman',d:'<i class="rule"></i>',w:''},
+ {n:'Warm Friendly',g:'Education, community, health',c:['#FFF4EC','#FFB38A','#2A9D8F','#3B2F2F'],f:'Nunito · Baloo Bhaijaan 2',p:'Arial Rounded / Arial',d:'<i class="b1"></i><i class="b2"></i>'},
+ {n:'Data Focus',g:'Results, KPIs, finance',c:['#1E293B','#2563EB','#16A34A','#CBD5E1'],f:'Barlow + Barlow Condensed · Cairo',p:'Arial + Arial Narrow',d:'<div class="ch"><div style="--h:62%"><em>39.1M</em><span>Q1</span></div><div style="--h:68%"><em>41.6M</em><span>Q2</span></div><div style="--h:80%"><em>48.2M</em><span>Q3</span></div></div>',w:''},
+ {n:'Luxury',g:'Premium brands, events, galas',c:['#0E0E0E','#C9A45C','#F3EBDD'],f:'Cormorant Garamond · Reem Kufi',p:'Garamond / Times New Roman',d:'<i class="fr"></i>'},
+ {n:'Gulf Heritage',g:'UAE and Gulf audiences',c:['#F1E4CC','#6B3E26','#1C6E6A','#4A2A18'],f:'El Messiri (English and Arabic)',p:'Georgia / Times New Roman',d:'<i class="pat"></i>'},
+ {n:'Playful Pop',g:'Youth, marketing, social',c:['#FFD23F','#FF5D8F','#3A86FF','#111111'],f:'Bricolage Grotesque · Lalezar + Baloo Bhaijaan 2',p:'Arial Black / Arial',d:'<i class="star"></i>'},
+ {n:'Academic',g:'University, research, theses',c:['#7A1F2B','#222222','#FFFFFF','#DDDDDD'],f:'Crimson Pro + Lato · Noto Naskh Arabic',p:'Georgia + Arial / Times New Roman',d:'<i class="bar"></i><i class="fn"><span>Source: Northwind finance team, September 2026</span><span>4</span></i>',w:'<i class="bar" style="left:auto;right:0;width:1.6cqw"></i>'},
+ {n:'Pitch Deck',g:'Investors, competitions',c:['#111111','#3D5AFE','#7B8CFF','#FFFFFF'],f:'Sora · Almarai',p:'Arial',d:'<i class="blk"></i>'}
+];
+const slide=d=>`<div class="box"><div class="slide">${d.d||''}<p class="eb">Q3 2026 update</p><h2>Three new hubs, one faster network</h2><ul class="kp"><li><b>AED 48.2M</b><span>Revenue, up 18%</span></li><li><b>96.4%</b><span>On-time delivery</span></li><li><b>3</b><span>New hubs opened</span></li></ul><p class="br">Northwind Freight</p></div></div>`;
+const web=d=>`<div class="box w"><div class="web" dir="rtl" lang="ar">${d.w!==undefined?d.w:(d.d||'')}<nav><b>نورثويند للشحن</b><span>الخدمات</span><span>التقارير</span><span>تواصل معنا</span></nav><div class="hero"><p class="eb">تحديث الربع الثالث 2026</p><h3>ثلاثة مراكز جديدة، وشبكة أسرع</h3><p class="lead">افتتحنا مراكز في دبي الجنوب وصحار والدمام، فصارت الشحنات تصل أسرع بيوم كامل.</p><a class="btn" href="#">اقرأ التقرير</a></div><ul class="kp"><li><b>48.2 مليون</b><span>الإيرادات بالدرهم</span></li><li><b>96.4%</b><span>التسليم في الموعد</span></li><li><b>3</b><span>مراكز جديدة</span></li></ul></div></div>`;
+document.getElementById('list').innerHTML=D.map((d,i)=>`<section class="card d${i+1}" id="d${i+1}">
+<header><span class="num">#${String(i+1).padStart(2,'0')}</span><h2>${d.n}</h2><span class="good">${d.g}</span></header>
+<div class="pair"><figure>${slide(d)}<figcaption>Slide · English</figcaption></figure><figure>${web(d)}<figcaption>Web page · Arabic</figcaption></figure></div>
+<div class="meta"><span><b>Colors</b> <span class="sw">${d.c.map(x=>`<span style="background:${x}" title="${x}"></span>`).join('')}</span></span><span><b>Fonts</b> ${d.f}</span><span><b>PowerPoint fallback</b> ${d.p}</span></div>
+</section>`).join('');
+</script>
+</body>
+</html>

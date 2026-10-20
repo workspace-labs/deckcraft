@@ -1,0 +1,98 @@
+{
+  "id": "06",
+  "slug": "warm-friendly",
+  "name": "Warm Friendly",
+  "good_for": "Education, community, health",
+  "colors": {
+    "bg": "#FFF4EC",
+    "ink": "#3B2F2F",
+    "muted": "#7A6560",
+    "accent": "#2A9D8F",
+    "peach": "#FFB38A",
+    "clay": "#C2703F",
+    "surface": "#FFFFFF",
+    "line": "#EAD6C8"
+  },
+  "fonts": {
+    "display": {
+      "family": "Nunito",
+      "weight": 800,
+      "width": 0.596,
+      "fallback": "Arial Rounded MT Bold"
+    },
+    "body": {
+      "family": "Nunito",
+      "weight": 600,
+      "width": 0.572,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Baloo Bhaijaan 2",
+      "weight": 800,
+      "width": 0.482,
+      "fallback": "Arial"
+    },
+    "body_ar": {
+      "family": "Baloo Bhaijaan 2",
+      "weight": 500,
+      "width": 0.445,
+      "fallback": "Arial"
+    }
+  },
+  "slide": {
+    "deco": [
+      {
+        "shape": "ellipse",
+        "x": 75,
+        "y": -12,
+        "w": 34,
+        "h": 34,
+        "fill": "peach",
+        "alpha": 0.65
+      },
+      {
+        "shape": "ellipse",
+        "x": 64,
+        "y": 47.25,
+        "w": 16,
+        "h": 16,
+        "fill": "accent",
+        "alpha": 0.22
+      }
+    ],
+    "title": {
+      "size": 5.2,
+      "w": 0.7
+    },
+    "eyebrow": {
+      "style": "pill",
+      "fill": "accent",
+      "color": "surface",
+      "case": "none",
+      "tracking": 0,
+      "weight": 800
+    },
+    "cards": {
+      "style": "box",
+      "fill": "surface",
+      "radius": 2.4,
+      "shadow": true,
+      "pad": 1.9
+    },
+    "value": {
+      "color": "accent"
+    },
+    "org": {
+      "weight": 800,
+      "color": "clay"
+    },
+    "marker": {
+      "style": "dot"
+    },
+    "bars": {
+      "fill": "peach",
+      "last": "accent",
+      "radius": 1
+    }
+  }
+}

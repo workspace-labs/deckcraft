@@ -1,0 +1,104 @@
+{
+  "id": "05",
+  "slug": "government-formal",
+  "name": "Government Formal",
+  "good_for": "Ministries, official briefs",
+  "colors": {
+    "bg": "#F7F6F2",
+    "ink": "#1C2B24",
+    "muted": "#5A6B62",
+    "accent": "#1F4D3A",
+    "gold": "#B08D4B",
+    "goldtext": "#8A7A55",
+    "surface": "#FFFFFF",
+    "line": "#B08D4B",
+    "bar": "#D8D2C2"
+  },
+  "fonts": {
+    "display": {
+      "family": "Source Serif 4",
+      "weight": 600,
+      "width": 0.599,
+      "fallback": "Georgia"
+    },
+    "body": {
+      "family": "Source Sans 3",
+      "weight": 400,
+      "width": 0.516,
+      "fallback": "Arial"
+    },
+    "display_ar": {
+      "family": "Amiri",
+      "weight": 700,
+      "width": 0.412,
+      "fallback": "Times New Roman"
+    },
+    "body_ar": {
+      "family": "Noto Naskh Arabic",
+      "weight": 400,
+      "width": 0.426,
+      "fallback": "Times New Roman"
+    }
+  },
+  "slide": {
+    "area": [
+      8,
+      5.5,
+      84,
+      45
+    ],
+    "align": "center",
+    "deco": [
+      {
+        "shape": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 100,
+        "h": 1.2,
+        "fill": "accent"
+      },
+      {
+        "shape": "rect",
+        "x": 0,
+        "y": 1.2,
+        "w": 100,
+        "h": 0.35,
+        "fill": "gold"
+      }
+    ],
+    "title": {
+      "size": 5,
+      "color": "accent",
+      "w": 0.8
+    },
+    "eyebrow": {
+      "color": "accent",
+      "tracking": 0.22,
+      "weight": 600,
+      "mark": "diamond",
+      "mark_color": "gold"
+    },
+    "cards": {
+      "style": "divider",
+      "line": "gold"
+    },
+    "value": {
+      "color": "accent"
+    },
+    "org": {
+      "case": "upper",
+      "tracking": 0.14,
+      "size": 1.1,
+      "color": "goldtext"
+    },
+    "marker": {
+      "style": "diamond",
+      "color": "gold"
+    },
+    "bars": {
+      "fill": "bar",
+      "last": "accent",
+      "radius": 0
+    }
+  }
+}

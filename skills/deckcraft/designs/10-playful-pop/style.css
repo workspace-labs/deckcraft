@@ -1,0 +1,9 @@
+/* 10 Playful Pop: sunshine yellow, a pink star, sticker cards. */
+.hero::after,.closing::after{content:"";position:absolute;width:min(20vw,220px);aspect-ratio:1;inset-inline-end:6%;top:12%;
+  background:var(--accent);clip-path:polygon(50% 0,61% 32%,95% 25%,70% 50%,95% 75%,61% 68%,50% 100%,39% 68%,5% 75%,30% 50%,5% 25%,39% 32%)}
+.eyebrow{transform:rotate(-2deg);color:var(--bg);font-weight:800}
+h1{max-width:14ch;line-height:.95}
+[lang=ar] h1{line-height:1.25}
+.closing .contact{background:var(--accent);color:var(--ink);border:3px solid var(--ink);padding:.6em 1.4em;border-radius:14px;
+  box-shadow:6px 6px 0 var(--ink)}
+.block+.block{border-top:3px solid var(--ink)}
