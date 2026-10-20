@@ -1,5 +1,7 @@
 # deckcraft
 
+![deckcraft: twelve ready-made designs shown as two tilted strips of real slides, with 12 designs, 7 slide types, 3 files and 2 languages](media/deckcraft-hero.png)
+
 An agent skill that makes presentations and web pages with real design.
 
 Someone brings a brief, or a plain PowerPoint or HTML page. The agent shows **12 ready-made designs**,
@@ -103,7 +105,7 @@ examples and look at the `check` pictures.
 
 ## Status
 
-Version 0.1.0, the first version (2026-10-21). It makes new decks and pages, carries the design's fonts
+Version 0.1.1 (first version 0.1.0, 2026-10-21). It makes new decks and pages, carries the design's fonts
 inside the PowerPoint (proven in PowerPoint for Mac), and restyles an existing deck or page with every word
 kept (`extract` and `same-words`). An independent review is next; fixes will come as 0.1.x. See `docs/plan.md`.
 

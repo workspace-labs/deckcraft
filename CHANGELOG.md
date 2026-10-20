@@ -2,6 +2,12 @@
 
 All notable changes to deckcraft. The version is `VERSION` in `skills/deckcraft/deckcraft/__init__.py`.
 
+## [0.1.1] - 2026-10-21
+
+### Added
+
+- The README picture (`media/deckcraft-hero.png`), made from real deckcraft slides; the owner's pick of six.
+
 ## [0.1.0] - 2026-10-21
 
 The first version. Not yet independently reviewed.

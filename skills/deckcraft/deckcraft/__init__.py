@@ -1,2 +1,2 @@
 """deckcraft: decks and web pages in 12 approved designs."""
-VERSION = "0.1.0"
+VERSION = "0.1.1"
