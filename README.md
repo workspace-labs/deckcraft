@@ -1,6 +1,6 @@
 # deckcraft
 
-![deckcraft: the twelve designs fanned out like a hand of cards, with design 09 Gulf Heritage pulled to the front](media/deckcraft-hero.png)
+![deckcraft: the twelve designs fanned out like a hand of cards, with design 09 Gulf Heritage pulled to the front](media/deckcraft-hero-0.1.2.png)
 
 An agent skill that makes presentations and web pages with real design.
 
@@ -103,11 +103,16 @@ running into other text, Arabic mirrored, every PowerPoint package well formed w
 resolving, and HTML escaping. They cannot see the slides: after a change to a design, make the
 examples and look at the `check` pictures.
 
+The 0.1.2 review ran **81 tests, all passing**, plus rendering and format checks.
+See [test-evedince.md](test-evedince.md) for the counts, commands, results and untested platforms.
+
 ## Status
 
-Version 0.1.1 (first version 0.1.0, 2026-10-21). It makes new decks and pages, carries the design's fonts
-inside the PowerPoint (proven in PowerPoint for Mac), and restyles an existing deck or page with every word
-kept (`extract` and `same-words`). An independent review is next; fixes will come as 0.1.x. See `docs/plan.md`.
+Version 0.1.2 (first version 0.1.0, 2026-10-21). The first review found and repaired text-loss cases,
+long-number overflow, incomplete HTML font requests and unreliable check evidence. Regression tests
+cover these repairs; see `CHANGELOG.md`. The PowerPoint carries its fonts (proven in PowerPoint for Mac).
+When restyling a file, `extract` and `same-words` help detect missing words; also compare the original
+wording and order directly and review notices about objects that could not be carried.
 
 ## Limits
 

@@ -30,8 +30,9 @@ python3 <skill folder>/scripts/deckcraft.py same-words their.pptx content.json  
 - **Fixing a plain deck or page someone already made.** Their words stay exactly as they are; only the
   look changes. `deckcraft.py extract their.pptx --out content.json` copies every word into a draft
   and lists what it cannot carry (tables, pictures, charts). Before making, `deckcraft.py same-words
-  their.pptx content.json` must say every word is there. Suggest text changes; make them only on
-  their yes. Read `references/fixing.md`.
+  their.pptx content.json` must say every word is there. This compares occurrence counts, not word
+  order or exact punctuation; also compare the wording and order directly and review all omission
+  notices. Suggest text changes; make them only on their yes. Read `references/fixing.md`.
 - Confirm the outputs and language in one line before making anything.
 
 ## 2. Let them pick a design
@@ -92,8 +93,9 @@ LibreOffice draws it. **Open and look at every picture.** Look for text cut off 
 text, text over a shape, Arabic letters broken apart, an empty slide, and anything unlike the chosen
 design. Fix the content and make again until every page is clean.
 
-If the check cannot run (no Chrome/Edge or no LibreOffice), say so plainly in the hand-over: say
-which files were not checked, and ask the person to open them. Never call an unchecked file checked.
+If the check cannot run (no Chrome/Edge or no LibreOffice), say exactly which files were not checked.
+Keep them as unverified drafts until you can inspect every page in another available viewer.
+Final hand-over waits for that inspection. Never call an unchecked file checked.
 
 ## 6. Hand over, then change rounds
 
@@ -107,7 +109,7 @@ rounds as they want, until they say done.
 - Never change the 12 designs, their colours or their fonts.
 - Never invent facts, numbers, quotes, names or sources.
 - Never rewrite someone's own text without their yes.
-- Never hand over a file whose pages you did not look at, without saying so.
+- Never hand over a final file whose pages you did not look at.
 
 ## Limits
 

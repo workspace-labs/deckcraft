@@ -160,14 +160,27 @@ def weight(family, wanted):
 def google_fonts_url(design):
     """One Google Fonts stylesheet link for every font the design uses."""
     want = {}
+
+    def add(f, wanted=None, italic=False):
+        fam = f["family"]
+        want.setdefault(fam, set()).add((int(italic), weight(fam, wanted or f["weight"])))
+
     for role in FONT_ROLES:
         f = design["fonts"][role]
-        fam = f["family"]
-        want.setdefault(fam, set()).update({(0, weight(fam, w)) for w in (400, f["weight"], 700)})
-    title = design.get("slide", {}).get("title", {})
-    if title.get("italic"):
-        f = design["fonts"]["display"]
-        want[f["family"]].add((1, weight(f["family"], f["weight"])))
+        for w in (400, f["weight"], 700):
+            add(f, w)
+    slide = design.get("slide", {})
+    for lang in ("en", "ar"):
+        for role in ("title", "eyebrow", "body", "value", "label", "org"):
+            st = dict(DEFAULTS[role], **slide.get(role, {}))
+            f = font(design, st["font"], lang)
+            add(f, st.get("weight"), bool(st.get("italic")) and lang == "en")
+        # The page's navigation contact uses body weight 600.
+        add(font(design, "body", lang), 600)
+        if slide.get("org", {}).get("pos") == "footnote" and lang == "en":
+            # Slide footnotes use display italic; the page footer uses body italic.
+            add(font(design, "display", lang), 400, True)
+            add(font(design, "body", lang), italic=True)
     parts = []
     for fam in sorted(want):
         axes = sorted(want[fam])

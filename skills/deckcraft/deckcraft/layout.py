@@ -360,6 +360,10 @@ class Builder:
             widths = [max(textfit.text_width(it["value"], vsize, self.font("display")["width"] * 1.04),
                           textfit.text_width(it["label"], self.label_style()["size"], self.font("body")["width"]))
                       + 1 for it in items]
+            available = self.aw - gap * (n - 1)
+            total = sum(widths)
+            if total > available:
+                widths = [w * available / total for w in widths]
         else:
             cw = (self.aw - gap * (n - 1)) / n
             widths = [cw] * n

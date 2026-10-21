@@ -6,11 +6,15 @@ Nothing is installed; a missing tool is reported in plain words.
 """
 import glob
 import os
+from pathlib import Path
 import re
+import signal
 import shutil
 import subprocess
 import sys
 import tempfile
+
+from .check_browser import BrowserSession
 
 BROWSERS = {
     "darwin": ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -59,6 +63,7 @@ def _platform():
 
 def run(files, out_dir=None):
     pictures, problems = [], []
+    destinations = set()
     for f in files:
         if not os.path.isfile(f):
             problems.append(f"{f} does not exist.")
@@ -66,12 +71,21 @@ def run(files, out_dir=None):
         folder = out_dir or os.path.join(os.path.dirname(os.path.abspath(f)), "check")
         os.makedirs(folder, exist_ok=True)
         stem = os.path.splitext(os.path.basename(f))[0]
-        if f.lower().endswith(".pptx"):
-            got, why = pptx_pictures(f, folder, stem)
-        elif f.lower().endswith(".html"):
-            got, why = html_pictures(f, folder, stem)
-        else:
-            got, why = [], f"{f} is not a .pptx or .html file."
+        original_stem, suffix = stem, 2
+        key = lambda name: (os.path.normcase(os.path.abspath(folder)), os.path.normcase(name))
+        while key(stem) in destinations:
+            stem = f"{original_stem}-{suffix}"
+            suffix += 1
+        destinations.add(key(stem))
+        try:
+            if f.lower().endswith(".pptx"):
+                got, why = pptx_pictures(f, folder, stem)
+            elif f.lower().endswith(".html"):
+                got, why = html_pictures(f, folder, stem)
+            else:
+                got, why = [], f"{f} is not a .pptx or .html file."
+        except (OSError, subprocess.SubprocessError) as e:
+            got, why = [], f"{f}: the check failed ({type(e).__name__}); no fresh pictures were verified."
         pictures += got
         if why:
             problems.append(why)
@@ -93,44 +107,59 @@ def html_pictures(path, folder, stem):
                     "Open the file in a browser and look at it yourself, or set DECKCRAFT_CHROME.")
     with open(path, encoding="utf-8") as f:
         text = f.read()
-    url = "file://" + os.path.abspath(path).replace(os.sep, "/")
-    if not url.startswith("file:///"):
-        url = url.replace("file://", "file:///", 1)
+    url = Path(path).resolve().as_uri()
     shots = []
     profile = tempfile.mkdtemp(prefix="deckcraft-chrome-")
     try:
-        if 'class="slide"' in text:
-            n = text.count('<section class="slide"')
-            for i in range(1, n + 1):
-                out = os.path.join(folder, f"{stem}-{i:02d}.png")
-                _shoot(browser, profile, f"{url}#{i}", out, 1600, 900)
-                shots.append(out)
-        else:
-            sections = len(re.findall(r'<section class="block', text))
-            out = os.path.join(folder, f"{stem}-desktop.png")
-            _shoot(browser, profile, url, out, 1280, 700 + 760 * sections)
-            # Headless Chrome will not open a window under 500 px, so the phone view is a 390 px frame.
-            phone = os.path.join(folder, f"{stem}-phone.png")
-            frame = os.path.join(profile, "phone.html")
-            h = 900 + 1100 * sections
-            with open(frame, "w", encoding="utf-8") as fh:
-                fh.write(f'<body style="margin:0;background:#888"><iframe src="{url}" width="390" height="{h}" '
-                         'style="border:0;display:block"></iframe></body>')
-            _shoot(browser, profile, "file:///" + frame.lstrip("/").replace(os.sep, "/"), phone, 500, h)
-            shots += [out, phone]
+        with BrowserSession(browser, profile) as session:
+            if 'class="slide"' in text:
+                n = text.count('<section class="slide"')
+                for i in range(1, n + 1):
+                    out = os.path.join(profile, f"{stem}-{i:02d}.png")
+                    session.shoot(f"{url}#{i}", out, 1600, 900)
+                    shots.append(out)
+            else:
+                out = os.path.join(profile, f"{stem}-desktop.png")
+                phone = os.path.join(profile, f"{stem}-phone.png")
+                session.shoot(url, out, 1280, 900, full_page=True)
+                session.shoot(url, phone, 390, 900, full_page=True)
+                shots += [out, phone]
+        if not shots or any(not os.path.isfile(s) for s in shots):
+            return [], f"the browser did not save every fresh picture of {path}."
+        pictures = []
+        for shot in shots:
+            dest = os.path.join(folder, os.path.basename(shot))
+            shutil.copy2(shot, dest)
+            pictures.append(dest)
+        return pictures, None
+    except (OSError, subprocess.SubprocessError) as e:
+        return [], f"{os.path.basename(path)}: browser check failed ({type(e).__name__}); no fresh pictures were verified."
     finally:
         shutil.rmtree(profile, ignore_errors=True)
-    missing = [s for s in shots if not os.path.isfile(s)]
-    if missing:
-        return [s for s in shots if s not in missing], f"the browser did not save {len(missing)} picture(s) of {path}."
-    return shots, None
 
 
-def _shoot(browser, profile, url, out, w, h):
-    cmd = [browser, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-first-run",
-           "--no-default-browser-check", f"--user-data-dir={profile}", f"--window-size={w},{h}",
-           "--virtual-time-budget=8000", f"--screenshot={out}", url]
-    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=120)
+def _run_tool(cmd, timeout):
+    # Renderers spawn helpers. Give this run its own group so a timeout cannot leave
+    # its children alive or affect another Chrome/Office session on a shared machine.
+    options = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt" else {"start_new_session": True}
+    process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, **options)
+    try:
+        status = process.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        try:
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10)
+            else:
+                os.killpg(process.pid, signal.SIGKILL)
+        except (OSError, subprocess.SubprocessError):
+            if process.poll() is None:
+                process.kill()
+        finally:
+            process.wait(timeout=10)
+        raise
+    if status:
+        raise subprocess.CalledProcessError(status, cmd)
 
 
 def _give_fonts(pptx_path, font_dir):
@@ -138,7 +167,8 @@ def _give_fonts(pptx_path, font_dir):
     import zipfile
     from . import fonts
     try:
-        xml = zipfile.ZipFile(pptx_path).read("ppt/presentation.xml").decode("utf-8")
+        with zipfile.ZipFile(pptx_path) as package:
+            xml = package.read("ppt/presentation.xml").decode("utf-8")
     except (KeyError, OSError, zipfile.BadZipFile):
         return
     names = set(re.findall(r'<p:font typeface="([^"]+)"', xml))
@@ -156,17 +186,30 @@ def pptx_pictures(path, folder, stem):
     profile = tempfile.mkdtemp(prefix="deckcraft-office-")
     try:
         _give_fonts(path, os.path.join(profile, "user", "fonts"))
-        cmd = [office, f"-env:UserInstallation=file:///{profile.lstrip('/').replace(os.sep, '/')}", "--headless",
-               "--convert-to", "pdf", "--outdir", folder, path]
-        subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=240)
+        render_dir = os.path.join(profile, "render")
+        os.makedirs(render_dir)
+        cmd = [office, f"-env:UserInstallation={Path(profile).resolve().as_uri()}", "--headless",
+               "--convert-to", "pdf", "--outdir", render_dir, os.path.abspath(path)]
+        _run_tool(cmd, 240)
+        # LibreOffice names the PDF after its input, not a caller-supplied output stem.
+        pdf = os.path.join(render_dir, os.path.splitext(os.path.basename(path))[0] + ".pdf")
+        if not os.path.isfile(pdf):
+            return [], f"LibreOffice could not open {os.path.basename(path)}. Open it in PowerPoint to see why."
+        tool = shutil.which("pdftoppm")
+        if tool:
+            _run_tool([tool, "-r", "80", "-png", pdf, os.path.join(render_dir, stem)], 240)
+            shots = sorted(glob.glob(os.path.join(glob.escape(render_dir), glob.escape(stem) + "-*.png")))
+            if not shots:
+                return [], f"No fresh slide pictures were saved for {path}."
+        else:
+            shots = [pdf]
+        pictures = []
+        for shot in shots:
+            dest = os.path.join(folder, stem + ".pdf" if shot == pdf else os.path.basename(shot))
+            shutil.copy2(shot, dest)
+            pictures.append(dest)
+        return pictures, None
+    except (OSError, subprocess.SubprocessError) as e:
+        return [], f"{os.path.basename(path)}: PowerPoint check failed ({type(e).__name__}); no fresh pictures were verified."
     finally:
         shutil.rmtree(profile, ignore_errors=True)
-    pdf = os.path.join(folder, stem + ".pdf")
-    if not os.path.isfile(pdf):
-        return [], f"LibreOffice could not open {os.path.basename(path)}. Open it in PowerPoint to see why."
-    tool = shutil.which("pdftoppm")
-    if not tool:
-        return [pdf], None
-    subprocess.run([tool, "-r", "80", "-png", pdf, os.path.join(folder, stem)], timeout=240)
-    pngs = sorted(glob.glob(os.path.join(folder, stem + "-*.png")))
-    return (pngs or [pdf]), None

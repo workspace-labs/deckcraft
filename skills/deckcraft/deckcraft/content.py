@@ -4,6 +4,7 @@ The rules live in references/content-format.md. Every problem becomes one plain
 numbered sentence, so the agent can fix exactly that and run again.
 """
 import json
+import math
 import re
 
 LANGS = ("en", "ar")
@@ -26,6 +27,7 @@ LIMITS = {
 }
 
 HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
+BAD_XML = re.compile("[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]")
 
 
 class ContentError(Exception):
@@ -96,7 +98,7 @@ def _slide(s, n, problems):
         problems.append(f"{where} must be an object with a \"type\" ({', '.join(SLIDE_TYPES)}).")
         return
     kind = s["type"]
-    if kind not in SLIDE_TYPES:
+    if not isinstance(kind, str) or kind not in SLIDE_TYPES:
         problems.append(f"{where}: \"{kind}\" is not a slide type. Use one of: {', '.join(SLIDE_TYPES)}.")
         return
     where = f"Slide {n} ({kind})"
@@ -117,6 +119,8 @@ def _slide(s, n, problems):
                     problems.append(f"{where}: point {i} must be text.")
                 elif len(p) > LIMITS["point"]:
                     problems.append(f"{where}: point {i} is {len(p)} characters; keep it under {LIMITS['point']}.")
+                elif BAD_XML.search(p):
+                    problems.append(f"{where}: point {i} contains a character that PowerPoint cannot store.")
     elif kind == "numbers":
         items = s.get("items")
         if not isinstance(items, list) or not 2 <= len(items) <= 4:
@@ -138,8 +142,9 @@ def _slide(s, n, problems):
                 _text(b, "label", w, problems, required=True, limit=LIMITS["label"])
                 _text(b, "show", w, problems, limit=LIMITS["value"])
                 v = b.get("value")
-                if isinstance(v, bool) or not isinstance(v, (int, float)) or v < 0:
-                    problems.append(f"{w}: \"value\" must be a number of 0 or more.")
+                if (isinstance(v, bool) or not isinstance(v, (int, float)) or v < 0
+                        or (isinstance(v, float) and not math.isfinite(v))):
+                    problems.append(f"{w}: \"value\" must be a number of 0 or more, not infinity or NaN.")
 
 
 def _pair(it, fields, where, problems):
@@ -160,6 +165,8 @@ def _text(obj, field, where, problems, required=False, limit=None):
     if not isinstance(v, str) or (required and not v.strip()):
         problems.append(f"{where}: \"{field}\" must be text.")
         return
+    if BAD_XML.search(v):
+        problems.append(f"{where}: \"{field}\" contains a character that PowerPoint cannot store.")
     limit = limit or LIMITS.get(field)
     if limit and len(v) > limit:
         problems.append(f"{where}: \"{field}\" is {len(v)} characters; keep it under {limit}.")

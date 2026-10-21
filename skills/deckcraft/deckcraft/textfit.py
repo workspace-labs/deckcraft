@@ -8,6 +8,7 @@ import unicodedata
 
 NARROW = set("iljtfrI.,;:'!|()[] ")
 WIDE = set("mwMW@%")
+ARABIC_DIGITS = set("٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹")
 
 
 def char_width(ch):
@@ -29,7 +30,11 @@ def text_width(text, size, font_width, tracking=0.0):
     """Estimated width of one line of text, in the same units as size."""
     if not text:
         return 0.0
-    w = sum(char_width(c) for c in text) * font_width
+    # Numerals do not join like Arabic letters. Their advances can be much wider
+    # than the Arabic letter average: the bundled fonts reach 0.803 em. Keep a
+    # small margin above that so long figures are shrunk or reported, not clipped.
+    w = sum(max(char_width(c) * font_width, 0.85) if c in ARABIC_DIGITS
+            else char_width(c) * font_width for c in text)
     return (w + tracking * len(text)) * size
 
 

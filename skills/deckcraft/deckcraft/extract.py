@@ -55,7 +55,7 @@ def draft(path):
                 out += _points(title, body)
         elif not body:
             out.append({"type": "closing" if n == len(slides) else "section", "title": title})
-        elif n == len(slides) and len(body) <= 2:
+        elif n == len(slides) and len(body) <= 2 and (len(body) == 1 or CONTACT.match(body[-1])):
             slide = {"type": "closing", "title": title}
             if CONTACT.match(body[-1]):
                 slide["contact"] = body.pop()
@@ -96,11 +96,11 @@ def _points(title, body):
 def same_words(original, content):
     """Words in the original file that the content file no longer has (with counts)."""
     def words(text):
-        return collections.Counter(w.lower() for w in re.findall(r"[\w؀-ۿ%.,'-]+", text)
-                                   if re.search(r"\w", w)).copy()
-
-    def norm(c):
-        return collections.Counter({re.sub(r"[.,]+$", "", k): v for k, v in c.items()})
+        # Normalize each occurrence before counting: punctuation variants must add,
+        # rather than overwrite one another's repetition counts.
+        return collections.Counter(re.sub(r"[.,،؛؟]+$", "", w.lower())
+                                   for w in re.findall(r"[\w؀-ۿ%.,'-]+", text)
+                                   if re.search(r"\w", w))
     src = " ".join(s["title"] + " " + " ".join(s["body"]) for s in read(original))
     have = []
     for s in content["slides"]:
@@ -112,7 +112,7 @@ def same_words(original, content):
             elif isinstance(v, list):
                 for x in v:
                     have += [x] if isinstance(x, str) else [str(y) for y in x.values()]
-    missing = norm(words(src)) - norm(words(" ".join(have)))
+    missing = words(src) - words(" ".join(have))
     return dict(missing)
 
 
@@ -125,8 +125,14 @@ def _read_pptx(path):
     order = [rels[s.get(R + "id")] for s in pres.iter(P + "sldId")]
     slides = []
     for part in order:
-        root = ET.fromstring(z.read(posixpath.join("ppt", part)))
+        slide_part = posixpath.join("ppt", part)
+        root = ET.fromstring(z.read(slide_part))
         title, body, other = "", [], []
+        slide_rels = posixpath.join(posixpath.dirname(slide_part), "_rels", posixpath.basename(slide_part) + ".rels")
+        if slide_rels in z.namelist():
+            attached = ET.fromstring(z.read(slide_rels))
+            if any(r.get("Type", "").endswith("/notesSlide") for r in attached):
+                other.append("speaker notes")
         best = None
         for sp in root.iter(P + "sp"):
             ph = sp.find(f"{P}nvSpPr/{P}nvPr/{P}ph")
@@ -183,15 +189,18 @@ class _Html(html.parser.HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.slides, self.buf, self.tag, self.skip = [], [], None, 0
-        self.table = False
-        self.cells = []
+        self.tables = []
 
     def handle_starttag(self, tag, attrs):
         if tag in self.SKIP:
             self.skip += 1
+        elif tag == "br" and not self.skip:
+            self.buf.append(" ")
         elif tag == "table":
-            self.table = True
-            self._slide()["other"].append("a table")
+            self._flush()
+            slide = self._slide()
+            self.tables.append((slide, len(slide["other"]), []))
+            slide["other"].append("a table")
         elif tag == "img":
             self._slide()["other"].append("a picture")
         elif tag in self.BLOCKS:
@@ -202,11 +211,12 @@ class _Html(html.parser.HTMLParser):
         if tag in self.SKIP:
             self.skip = max(0, self.skip - 1)
         elif tag == "table":
+            if not self.tables:
+                return
             self._flush()
-            self.table = False
-            cells, self.cells = self.cells, []
+            slide, notice, cells = self.tables.pop()
             shown = ", ".join(cells[:4]) + ("..." if len(cells) > 4 else "")
-            self._slide()["other"][-1] = f"a table ({len(cells)} cells: {shown})"
+            slide["other"][notice] = f"a table ({len(cells)} cells: {shown})"
         elif tag in self.BLOCKS:
             self._flush()
 
@@ -227,8 +237,8 @@ class _Html(html.parser.HTMLParser):
             return
         if tag in ("h1", "h2") or (tag == "h3" and not self._slide()["title"]):
             self.slides.append({"title": text, "body": [], "other": []})
-        elif self.table:
-            self.cells.append(text)
+        elif self.tables:
+            self.tables[-1][2].append(text)
         else:
             self._slide()["body"].append(text)
 

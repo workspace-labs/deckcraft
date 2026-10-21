@@ -1,9 +1,11 @@
 import os
 import re
 import unittest
+from urllib.parse import parse_qs, urlsplit
 
 import helpers  # noqa: F401
-from deckcraft import designs
+from deckcraft import content, designs
+from deckcraft.layout import layout_deck
 
 
 class DesignTests(unittest.TestCase):
@@ -34,6 +36,24 @@ class DesignTests(unittest.TestCase):
                 weights = [int(x.split(",")[-1]) for x in spec.split("@")[1].split(";")]
                 for w in weights:
                     self.assertIn(w, designs.AVAILABLE[fam], f"{f}: {fam} has no weight {w}")
+
+    def test_requested_fonts_cover_every_rendered_text_variant(self):
+        for f in designs.folders():
+            d = designs.load(f)
+            requested = set()
+            query = parse_qs(urlsplit(designs.google_fonts_url(d)).query)
+            for family_spec in query["family"]:
+                family, spec = family_spec.split(":")
+                axes, tuples = spec.split("@")
+                for values in tuples.split(";"):
+                    variant = dict(zip(axes.split(","), map(int, values.split(","))))
+                    requested.add((family, variant["wght"], bool(variant.get("ital", 0))))
+            for lang in ("en", "ar"):
+                with self.subTest(design=f, lang=lang):
+                    slides, _ = layout_deck(content.check(helpers.example(lang)), d)
+                    used = {(e["family"], e["weight"], e["italic"])
+                            for slide in slides for e in slide["elements"] if e["kind"] == "text"}
+                    self.assertFalse(used - requested, f"Missing web fonts: {sorted(used - requested)}")
 
     def test_every_colour_name_used_exists(self):
         for f in designs.folders():

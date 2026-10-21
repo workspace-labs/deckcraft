@@ -68,6 +68,13 @@ class PptxTests(unittest.TestCase):
 
 
 class HtmlTests(unittest.TestCase):
+    def test_arabic_pages_keep_the_same_upright_type_as_arabic_slides(self):
+        for number in (2, 8, 11):
+            d = designs.load(number)
+            page, _ = html_page.render(content.check(helpers.example("ar")), d)
+            self.assertIn("--title-style:normal", page)
+            self.assertIn("[lang=ar] .lead,[lang=ar] .cards span,[lang=ar] footer{font-style:normal}", page)
+
     def test_slides_and_page(self):
         for lang in ("en", "ar"):
             c = content.check(helpers.example(lang))
@@ -95,6 +102,17 @@ class HtmlTests(unittest.TestCase):
 
 
 class CliTests(unittest.TestCase):
+    def test_output_name_cannot_escape_output_folder(self):
+        with tempfile.TemporaryDirectory() as root:
+            out = os.path.join(root, "out")
+            src = os.path.join(helpers.EXAMPLES, "northwind-en.json")
+            for name in ("../escape", "..\\escape", os.path.join(root, "absolute"), "C:\\escape"):
+                with self.subTest(name=name):
+                    self.assertEqual(cli.main(["make", src, "--design", "7", "--out", out,
+                                               "--formats", "slides", "--name", name]), 1)
+            self.assertFalse(os.path.exists(out))
+            self.assertEqual(os.listdir(root), [])
+
     def test_make_all_three(self):
         out = tempfile.mkdtemp()
         src = os.path.join(helpers.EXAMPLES, "northwind-en.json")

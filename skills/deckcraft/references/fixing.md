@@ -20,8 +20,11 @@ The person's words are theirs. deckcraft changes the look, never the content.
    python3 <skill folder>/scripts/deckcraft.py same-words their.pptx content.json
    ```
 
-   It must say "Every word of the original is in the content file." It ignores punctuation and letter
-   case, so moving a colon is fine; changing or dropping a word is not.
+   It must say "Every word of the original is in the content file." It compares word occurrence
+   counts, ignoring letter case and sentence-ending punctuation, while retaining Arabic diacritics
+   and punctuation inside numbers. Also compare the original wording and order directly: matching
+   counts cannot prove unchanged order, capitalization, or meaning. Review every notice about objects
+   that could not be carried, including tables, pictures, charts and speaker notes.
 4. A text longer than a slide holds is reported by `extract` or `make`. Ask the person how to shorten it;
    do not shorten it yourself.
 5. Text you think could be better goes in a "Suggested changes" list in the hand-over. Change it only

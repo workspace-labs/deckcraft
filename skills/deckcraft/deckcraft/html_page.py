@@ -21,6 +21,9 @@ def render(content, design, base_dir="."):
     warnings = []
     with open(BASE_CSS, encoding="utf-8") as f:
         css = f.read() + "\n" + variables(design, lang) + "\n" + design["css"]
+    if lang == "ar":
+        # Match the upright Arabic slide styles; these fonts have no italic face.
+        css += "\n[lang=ar] .lead,[lang=ar] .cards span,[lang=ar] footer{font-style:normal}"
     classes = [f"eyebrow-{s['eyebrow']['style']}", f"cards-{_cards_class(s)}", f"marker-{s['marker']['style']}",
                f"align-{s['align']}"]
     out = [head(content["title"], lang, designs.google_fonts_url(design), css)]
@@ -54,7 +57,7 @@ def variables(design, lang):
         "--title": c(t["color"]),
         "--title-case": "uppercase" if t["case"] == "upper" else "none",
         "--title-track": f"{t['tracking']:g}em",
-        "--title-style": "italic" if t["italic"] else "normal",
+        "--title-style": "italic" if t["italic"] and lang != "ar" else "normal",
         "--title-lead": f"{max(t['leading'], 1.02):g}",
         "--eyebrow": c(eb["color"]),
         "--eyebrow-bg": c(eb["fill"]) or "transparent",

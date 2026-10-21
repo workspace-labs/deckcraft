@@ -2,6 +2,24 @@
 
 All notable changes to deckcraft. The version is `VERSION` in `skills/deckcraft/deckcraft/__init__.py`.
 
+## [0.1.2] - 2026-10-21
+
+### Fixed
+
+- Preserve both closing paragraphs, HTML line-break word boundaries, repeated-word counts, and
+  separate table/picture notices when restyling a file; report attached speaker notes as uncarried.
+- Refuse malformed slide types, nonfinite chart values and characters that would break PowerPoint XML.
+- Keep long Pitch Deck number rows on the slide and size Arabic-Indic figures conservatively.
+- Request all HTML font weights and italics actually used; keep Arabic page text upright like the slides.
+- Require fresh successful check renders, encode local file URLs, preserve separate evidence for
+  same-named inputs, handle bracketed filenames, and stop only the renderer's own process tree on timeout.
+- Capture full web pages at normal desktop and true 390-pixel phone viewports, with fonts ready, so
+  viewport-height spacing is not stretched by the screenshot window.
+- Restrict output names to filenames so they cannot write outside the selected output folder.
+- Clarify that word counts supplement direct text review and that unchecked drafts are not final deliveries.
+- Point the README at the owner's supplied picture using a fresh versioned image URL to avoid stale previews.
+- Record the review's 81 passing tests, rendering counts and remaining platform limits in `test-evedince.md`.
+
 ## [0.1.1] - 2026-10-21
 
 ### Added

@@ -66,8 +66,37 @@ class LayoutTests(unittest.TestCase):
         _, warnings = layout_deck(c, designs.load(2))
         self.assertEqual(warnings, [])
 
+    def test_auto_number_row_stays_on_slide_at_content_limits(self):
+        for lang, value in (("en", "AED 1234567890123456"),
+                            ("ar", "١٢٣٤٥٦٧٨٩٠١٢٣٤٥٦٧٨٩٠")):
+            c = content.check({"lang": lang, "title": "Report", "slides": [
+                {"type": "numbers", "title": "Report", "items": [
+                    {"value": value, "label": "Delivery centres opened across locations"}
+                    for _ in range(4)]}]})
+            slides, warnings = layout_deck(c, designs.load(12))
+            for e in slides[0]["elements"]:
+                if e["kind"] == "text":
+                    self.assertGreaterEqual(e["x"], -EPS, (lang, e))
+                    self.assertLessEqual(e["x"] + e["w"], 100 + EPS, (lang, e))
+            # Four full-length values cannot remain at the approved display size.
+            self.assertTrue(any("number" in w for w in warnings), lang)
+
+    def test_arabic_numeral_overflow_is_reported(self):
+        c = content.check({"lang": "ar", "title": "تقرير", "slides": [
+            {"type": "numbers", "title": "تقرير", "items": [
+                {"value": "١٢٣٤٥٦٧٨٩٠١٢٣٤٥٦٧٨٩٠", "label": "الشحن"}
+                for _ in range(4)]}]})
+        _, warnings = layout_deck(c, designs.load(5))
+        self.assertTrue(any("number is too long" in w for w in warnings), warnings)
+
 
 class TextFitTests(unittest.TestCase):
+    def test_arabic_numerals_are_not_measured_as_joined_letters(self):
+        # The widest bundled Arabic numeral is 0.803 em (Alexandria Bold).
+        # Amiri's narrow letter average previously understated its digit widths.
+        for digits in ("٠١٢٣٤٥٦٧٨٩", "۰۱۲۳۴۵۶۷۸۹"):
+            self.assertGreaterEqual(textfit.text_width(digits, 1, 0.412), 8.4)
+
     def test_wrap_keeps_every_word(self):
         text = "one two three four five six seven"
         lines = textfit.wrap(text, 2, 0.5, 6)

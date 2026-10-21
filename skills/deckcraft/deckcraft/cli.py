@@ -82,6 +82,10 @@ def make(a):
     design = designs.load(a.design, content.get("brand"))
     base_dir = os.path.dirname(os.path.abspath(a.content))
     name = a.name or os.path.splitext(os.path.basename(a.content))[0]
+    if name in (".", "..") or any(c in name for c in '/\\:<>"|?*\x00'):
+        print("The file name must be a name only, without a folder or reserved filename characters.",
+              file=sys.stderr)
+        return 1
     os.makedirs(a.out, exist_ok=True)
     slides, warnings = layout_deck(content, design, base_dir)
     made = []
