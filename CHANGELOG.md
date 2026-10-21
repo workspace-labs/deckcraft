@@ -2,6 +2,23 @@
 
 All notable changes to deckcraft. The version is `VERSION` in `skills/deckcraft/deckcraft/__init__.py`.
 
+## [0.1.3] - 2026-10-21
+
+### Fixed
+
+- Keep visible words separate when extracting adjacent or nested HTML block elements, while
+  preserving words joined by inline markup.
+- Scale chart ratios before multiplying so large finite values cannot produce infinite coordinates;
+  report integers outside the finite numeric range as content errors.
+- Preserve the supplied precision in automatic chart labels in PowerPoint, HTML slides and web pages.
+- Report truncated logo headers and zero image dimensions as warnings, omit unusable logos consistently
+  from slides and web pages, continue making the requested files, and retain valid JPEG marker padding.
+- Wait for a numbered slide's fragment navigation to commit before reloading for a check picture,
+  so screenshots cannot silently repeat the preceding slide.
+- Isolate embedded font names in a disposable LibreOffice render copy, preventing its older bundled
+  Rubik Bold from hiding Arabic text; leave the delivered PowerPoint and bundled font files unchanged.
+- Add regression tests for these input boundaries and record the fresh verification in `test-evedince.md`.
+
 ## [0.1.2] - 2026-10-21
 
 ### Fixed

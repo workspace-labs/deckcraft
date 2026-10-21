@@ -190,11 +190,11 @@ class BrowserSession:
                 self.events = self.events[-1000:]
         raise BrowserError("The browser command timed out.")
 
-    def _wait_event(self, method, timeout=60):
+    def _wait_event(self, method, timeout=60, predicate=None):
         deadline = time.monotonic() + timeout
         while time.monotonic() < deadline:
             for i, event in enumerate(self.events):
-                if event.get("method") == method:
+                if event.get("method") == method and (predicate is None or predicate(event)):
                     return self.events.pop(i)
             response = self.connection.receive(timeout=max(0.001, deadline - time.monotonic()))
             if "method" in response:
@@ -217,6 +217,11 @@ class BrowserSession:
         if navigation.get("errorText"):
             raise BrowserError("The browser could not load the local file.")
         if "loaderId" not in navigation:
+            # Same-document navigation returns before the fragment commits. Reloading
+            # immediately can cancel that change and capture the previous slide again.
+            self._wait_event("Page.navigatedWithinDocument", predicate=lambda event:
+                event.get("params", {}).get("frameId") == navigation.get("frameId") and
+                event.get("params", {}).get("url") == url)
             # A hash change otherwise keeps the previous slide's initialized UI.
             self._command("Page.reload")
         self._wait_event("Page.loadEventFired")

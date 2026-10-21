@@ -41,8 +41,9 @@ deckcraft refuses any unknown field by name, so a typo never goes unnoticed.
 | `closing` | `title` | `subtitle`, `contact` | the closing section; an email or web address becomes a link |
 
 - `eyebrow` is the small line above a title ("Q3 2026 update", "Part 2"). Up to 40 characters.
-- In a chart, `value` is a number (it sets the bar's height); `show` is the text above the bar
-  (default: the number). The last bar is drawn in the accent colour, so put the one that matters last.
+- In a chart, `value` is a nonnegative number within the finite numeric range (it sets the bar's
+  height); `show` is the text above the bar (default: the number, without rounding away its precision).
+  The last bar is drawn in the accent colour, so put the one that matters last.
 - `note` under a chart is the place for units and the source.
 
 ## Lengths

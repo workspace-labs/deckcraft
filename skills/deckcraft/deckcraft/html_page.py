@@ -8,7 +8,9 @@ import os
 import re
 
 from . import designs
+from .content import chart_label
 from .htmlbits import data_uri, esc, font_stack, head
+from .images import image_size
 
 BASE_CSS = os.path.join(designs.DESIGNS_DIR, "page-base.css")
 EMAIL = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
@@ -88,9 +90,10 @@ def nav(content, base_dir, warnings):
     if path:
         full = path if os.path.isabs(path) else os.path.join(base_dir, path)
         try:
+            image_size(full)
             logo = f"<img class=\"logo\" src=\"{data_uri(full)}\" alt=\"{org}\">"
-        except OSError as e:
-            warnings.append(f"The logo cannot be used: {e.strerror}.")
+        except (OSError, ValueError) as e:
+            warnings.append(f"The logo cannot be used: {e}")
     contact = next((s.get("contact") for s in content["slides"] if s["type"] == "closing" and s.get("contact")), None)
     link = f"<a href=\"#contact\">{esc(contact)}</a>" if contact else ""
     name = "" if logo else f"<span class=\"org\">{org}</span>"
@@ -142,9 +145,9 @@ def chart(s, first, lang):
     biggest = max(b["value"] for b in s["bars"]) or 1
     bars, words = [], []
     for i, b in enumerate(s["bars"]):
-        shown = b.get("show") or (str(int(b["value"])) if float(b["value"]).is_integer() else f"{b['value']:.1f}")
+        shown = chart_label(b)
         last = " last" if i == len(s["bars"]) - 1 else ""
-        pct = max(1.5, 100 * b["value"] / biggest)
+        pct = max(1.5, 100 * (b["value"] / biggest))
         bars.append(f"<div class=\"bar{last}\" style=\"--v:{pct:.1f}%\"><em>{esc(shown)}</em><span>{esc(b['label'])}</span></div>")
         words.append(f"{b['label']}: {shown}")
     inner = (_eyebrow(s) + _h(s["title"], first) +

@@ -142,9 +142,21 @@ def _slide(s, n, problems):
                 _text(b, "label", w, problems, required=True, limit=LIMITS["label"])
                 _text(b, "show", w, problems, limit=LIMITS["value"])
                 v = b.get("value")
-                if (isinstance(v, bool) or not isinstance(v, (int, float)) or v < 0
-                        or (isinstance(v, float) and not math.isfinite(v))):
-                    problems.append(f"{w}: \"value\" must be a number of 0 or more, not infinity or NaN.")
+                valid = not isinstance(v, bool) and isinstance(v, (int, float)) and v >= 0
+                if valid:
+                    try:
+                        valid = math.isfinite(v)
+                    except OverflowError:
+                        valid = False
+                if not valid:
+                    problems.append(f"{w}: \"value\" must be a number of 0 or more within the finite numeric range.")
+
+
+def chart_label(bar):
+    """The supplied label, or the numeric value without rounding away its precision."""
+    value = bar["value"]
+    return bar.get("show") or (str(int(value)) if isinstance(value, float) and value.is_integer()
+                               else str(value))
 
 
 def _pair(it, fields, where, problems):

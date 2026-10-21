@@ -183,7 +183,11 @@ def _rels(z, name):
 
 # ---- HTML -------------------------------------------------------------------------
 class _Html(html.parser.HTMLParser):
-    BLOCKS = {"h1", "h2", "h3", "p", "li", "blockquote", "td", "th", "figcaption"}
+    # Block boundaries separate visible words even when the source has no whitespace
+    # between tags. Inline markup must still join, as in Inter<strong>national</strong>.
+    BLOCKS = {"h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "blockquote", "td", "th",
+              "figcaption", "div", "section", "article", "header", "footer", "main", "aside",
+              "nav", "address", "dt", "dd", "pre", "figure", "ul", "ol", "dl"}
     SKIP = {"head", "script", "style", "noscript", "template", "svg"}
 
     def __init__(self):

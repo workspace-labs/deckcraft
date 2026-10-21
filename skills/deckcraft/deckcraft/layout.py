@@ -5,6 +5,7 @@ out left to right; an Arabic deck is the same layout mirrored at the end, so the
 PowerPoint and the HTML slides writers never think about direction.
 """
 from . import designs, textfit
+from .content import chart_label
 from .images import image_size
 
 SLIDE_H = 56.25
@@ -452,12 +453,12 @@ class Builder:
         bw = slot * 0.62
         biggest = max(b["value"] for b in bars) or 1
         for i, b in enumerate(bars):
-            h = max(0.3, (base_y - top) * b["value"] / biggest)
+            h = max(0.3, (base_y - top) * (b["value"] / biggest))
             bx = x0 + i * slot + (slot - bw) / 2
             fill = bst["last"] if i == len(bars) - 1 else bst["fill"]
             self.shape("rect", bx, base_y - h, bw, h, fill=fill, radius=bst["radius"],
                        line=bst["line"], line_w=0.15 if bst["line"] else 0, corners="top")
-            shown = b.get("show") or _number(b["value"])
+            shown = chart_label(b)
             vst = dict(v, size=val_size)
             ve = self.make_text(shown, slot, val_size * 1.3, vst, "bar value", align="center", max_lines=1,
                                 min_scale=0.6, leading=1.15)
@@ -482,7 +483,3 @@ class Builder:
             l = self.label_style()
             items.append((l["size"] * 1.6, self.make_text("— " + s["by"], w, l["size"] * 2.8, l, "quote name")))
         self.stack(items, self.ay, self.bottom, "middle")
-
-
-def _number(v):
-    return str(int(v)) if float(v).is_integer() else f"{v:.1f}"

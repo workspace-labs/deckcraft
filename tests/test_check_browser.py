@@ -8,8 +8,10 @@ import struct
 import tempfile
 import unittest
 from unittest import mock
+import zlib
 
 import helpers
+from deckcraft import html_slides
 from deckcraft.check_browser import BrowserError, BrowserSession, _WebSocket
 
 
@@ -168,6 +170,41 @@ BROWSER = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 @unittest.skipUnless(os.environ.get("DECKCRAFT_BROWSER_TESTS") == "1" and os.path.exists(BROWSER),
                      "opt-in local Chrome integration test")
 class RealBrowserTests(unittest.TestCase):
+    def test_numbered_slide_pictures_match_requested_slide(self):
+        colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0),
+                  (255, 0, 255), (0, 255, 255), (128, 128, 128)]
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            page = root / "slides.html"
+            sections = ''.join('<section class="slide" aria-label="Slide ' + str(i) +
+                               '" style="background:rgb' + str(rgb) + '"></section>'
+                               for i, rgb in enumerate(colors, 1))
+            page.write_text('<style>html,body,.deck,.slide{margin:0;width:100%;height:100%}'
+                            '.slide{display:none}.slide.on{display:block}.bar{display:none}</style>'
+                            '<div class="deck">' + sections + '</div><div class="bar"></div>' +
+                            html_slides.SCRIPT, encoding="utf-8")
+            profile = root / "profile"
+            profile.mkdir()
+            with BrowserSession(BROWSER, str(profile)) as session:
+                for capture, number in enumerate([1, 2, 3, 4, 5, 6, 7, 1, 1, 7, 7, 2, 2, 5, 3, 1]):
+                    with self.subTest(number=number, capture=capture):
+                        shot = root / (str(capture) + ".png")
+                        session.shoot(page.as_uri() + "#" + str(number), shot, 160, 90)
+                        state = session._evaluate('({hash:location.hash,'
+                            'slide:document.querySelector(".slide.on").getAttribute("aria-label")})')
+                        self.assertEqual(state, {"hash": "#" + str(number), "slide": "Slide " + str(number)})
+                        png = shot.read_bytes()
+                        self.assertEqual((png[24], png[28]), (8, 0))  # 8-bit, noninterlaced
+                        self.assertIn(png[25], (2, 6))  # RGB or RGBA
+                        offset, compressed = 8, b""
+                        while offset < len(png):
+                            length = struct.unpack("!I", png[offset:offset + 4])[0]
+                            if png[offset + 4:offset + 8] == b"IDAT":
+                                compressed += png[offset + 8:offset + 8 + length]
+                            offset += length + 12
+                        # At the first pixel, every PNG filter's neighboring predictors are zero.
+                        self.assertEqual(tuple(zlib.decompress(compressed)[1:4]), colors[number - 1])
+
     def test_capture_finishes_fades_and_cancels_infinite_animations(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

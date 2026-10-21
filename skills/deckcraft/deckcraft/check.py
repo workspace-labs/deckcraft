@@ -13,6 +13,10 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import uuid
+from xml.dom import minidom
+from xml.parsers.expat import ExpatError
+import zipfile
 
 from .check_browser import BrowserSession
 
@@ -163,8 +167,7 @@ def _run_tool(cmd, timeout):
 
 
 def _give_fonts(pptx_path, font_dir):
-    """LibreOffice cannot read fonts embedded in a .pptx, so it gets the same bundled files."""
-    import zipfile
+    """Give Office the bundled faces too; embedded aliases avoid same-name overrides."""
     from . import fonts
     try:
         with zipfile.ZipFile(pptx_path) as package:
@@ -178,6 +181,51 @@ def _give_fonts(pptx_path, font_dir):
             shutil.copy(os.path.join(fonts.FONTS_DIR, e["file"]), font_dir)
 
 
+def _office_input(pptx_path, input_dir):
+    """Isolate embedded font names in a disposable copy, leaving the deliverable intact.
+
+    Office can prefer an older font it bundles over a newer embedded face with the
+    same name. A private alias on the embedded declaration and its uses makes the
+    preview use the embedded font. Font bytes, visible words and namespace prefixes
+    stay intact; decks without embedded fonts keep their existing conversion path.
+    """
+    presentation_ns = "http://schemas.openxmlformats.org/presentationml/2006/main"
+    try:
+        with zipfile.ZipFile(pptx_path) as package:
+            with minidom.parseString(package.read("ppt/presentation.xml")) as doc:
+                names = {font.getAttribute("typeface")
+                         for embedded in doc.getElementsByTagNameNS(presentation_ns, "embeddedFont")
+                         for font in embedded.getElementsByTagNameNS(presentation_ns, "font")
+                         if font.getAttribute("typeface")}
+            if not names:
+                return pptx_path
+            prefix = "Dckft" + uuid.uuid4().hex[:12]
+            aliases = {name: f"{prefix}_{i}" for i, name in enumerate(sorted(names))}
+            changes = {}
+            for item in package.infolist():
+                if not item.filename.endswith(".xml"):
+                    continue
+                with minidom.parseString(package.read(item)) as doc:
+                    changed = False
+                    for element in doc.getElementsByTagName("*"):
+                        name = element.getAttribute("typeface")
+                        if name in aliases:
+                            element.setAttribute("typeface", aliases[name])
+                            changed = True
+                    if changed:
+                        changes[item.filename] = doc.toxml(encoding="utf-8")
+            os.makedirs(input_dir, exist_ok=True)
+            render_input = os.path.join(input_dir, os.path.basename(pptx_path))
+            with zipfile.ZipFile(render_input, "w") as private:
+                for item in package.infolist():
+                    data = changes[item.filename] if item.filename in changes else package.read(item)
+                    private.writestr(item, data)
+            return render_input
+    except (KeyError, OSError, zipfile.BadZipFile, ExpatError):
+        # Let Office diagnose malformed/unembedded inputs just as it did before.
+        return pptx_path
+
+
 def pptx_pictures(path, folder, stem):
     office = find_office()
     if not office:
@@ -188,8 +236,9 @@ def pptx_pictures(path, folder, stem):
         _give_fonts(path, os.path.join(profile, "user", "fonts"))
         render_dir = os.path.join(profile, "render")
         os.makedirs(render_dir)
+        render_input = _office_input(path, os.path.join(render_dir, "input"))
         cmd = [office, f"-env:UserInstallation={Path(profile).resolve().as_uri()}", "--headless",
-               "--convert-to", "pdf", "--outdir", render_dir, os.path.abspath(path)]
+               "--convert-to", "pdf", "--outdir", render_dir, os.path.abspath(render_input)]
         _run_tool(cmd, 240)
         # LibreOffice names the PDF after its input, not a caller-supplied output stem.
         pdf = os.path.join(render_dir, os.path.splitext(os.path.basename(path))[0] + ".pdf")

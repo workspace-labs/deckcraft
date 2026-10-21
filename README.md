@@ -103,16 +103,22 @@ running into other text, Arabic mirrored, every PowerPoint package well formed w
 resolving, and HTML escaping. They cannot see the slides: after a change to a design, make the
 examples and look at the `check` pictures.
 
-The 0.1.2 review ran **81 tests, all passing**, plus rendering and format checks.
+The 0.1.3 test and repair pass ran **108 tests, all passing with no skips**, and checked **384 example
+views** across all 12 designs in both languages. It adds regression checks for HTML block boundaries,
+chart range and precision, damaged logos, numbered slide pictures and LibreOffice font collisions.
 See [test-evedince.md](test-evedince.md) for the counts, commands, results and untested platforms.
 
 ## Status
 
-Version 0.1.2 (first version 0.1.0, 2026-10-21). The first review found and repaired text-loss cases,
+Version 0.1.3 (first version 0.1.0, 2026-10-21). The first review found and repaired text-loss cases,
 long-number overflow, incomplete HTML font requests and unreliable check evidence. Regression tests
 cover these repairs; see `CHANGELOG.md`. The PowerPoint carries its fonts (proven in PowerPoint for Mac).
 When restyling a file, `extract` and `same-words` help detect missing words; also compare the original
 wording and order directly and review notices about objects that could not be carried.
+The next repair pass also preserves HTML block word boundaries and chart precision, handles large
+finite chart values, and reports damaged logo headers without aborting file generation.
+Check pictures now wait for the requested slide and isolate embedded font names during LibreOffice
+rendering to prevent older same-name fonts from hiding Arabic text.
 
 ## Limits
 

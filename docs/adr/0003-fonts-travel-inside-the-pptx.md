@@ -21,7 +21,9 @@ without them shows a substitute (Calibri on the Mac), and the design is lost.
   at 700 it is "Manrope" with bold on), so the name always matches what is embedded.
 - Embed only the fonts a deck uses, each as EOT, listed in `embeddedFontLst`.
 - `--fonts safe` keeps the old way: plain fonts every computer has, nothing embedded.
-- The check gives LibreOffice the same files, because it cannot read the embedded ones.
+- The check gives LibreOffice the same files. Since 0.1.3 it also uses private font-name aliases in a
+  temporary render copy: current LibreOffice can read embedded EOT, but an older same-name bundled
+  font can override it. The aliases avoid that collision without changing the delivered deck or fonts.
 
 ## Consequences
 
